@@ -23,6 +23,7 @@ using System;
 using System.IO.Ports;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
 
 namespace BleDriver
 {
@@ -31,32 +32,36 @@ namespace BleDriver
         /// <summary>
         /// The serial port we use to communicate with the BLE dongle.
         /// </summary>
-        SerialPort m_serialPort;
+        private SerialPort m_serialPort;
 
         /// <summary>
         /// The port name that the BLE dongle is connected to, ex. "COM3".
         /// </summary>
-        string m_port;
+        private string m_port;
 
         /// <summary>
         /// The stream connected to <code>m_serialPort</code> we use to read/write to/from the BLE dongle.
         /// </summary>
-        Stream m_stream;
+        private Stream m_stream;
+
+        private SerialDataReceivedEventHandler m_serialDataReceivedEventHandler;
+
+        public bool IsOpen { get { return m_serialPort != null; } }
 
         /// <summary>
-        /// 
+        /// Information about the ble device.
         /// </summary>
-        protected ManualResetEvent m_response;
+        public ble_msg_system_get_info_rsp_t Info { get; private set; }
+
+        /// <summary>
+        /// Wait handle for a response from the ble device.
+        /// </summary>
+        protected ManualResetEvent m_waitHandleResponse;
 
         /// <summary>
         /// Assumes that the maximum message size in bytes that ever goes over the wire in both directions is less than this value.
         /// </summary>
-        public const int MAX_MESSAGE = 1024;
-
-        /// <summary>
-        /// The maximum transmit message size in bytes.
-        /// </summary>
-        public const int MAX_TRANSMIT_MESSAGE = MAX_MESSAGE;
+        public const int MAX_MESSAGE = 256;
 
         /// <summary>
         /// The maximum receive message size in bytes.
@@ -69,9 +74,9 @@ namespace BleDriver
         public const int SIZE_HEADER = 4;
 
         /// <summary>
-        /// Transmit buffer.
+        /// Default wait time for the arrival of an event.
         /// </summary>
-        byte[] m_tx;
+        public const int EVENT_TIMEOUT_DEFAULT = 1000;
 
         /// <summary>
         /// Receive buffer.
@@ -79,9 +84,11 @@ namespace BleDriver
         byte[] m_rx;
 
         /// <summary>
-        /// Denotes the number of valid receive bytes in the receive buffer <code>m_rx</code>.
+        /// The number of valid receive bytes in the receive buffer <code>m_rx</code>.
         /// </summary>
         int m_rxOffset;
+
+        private byte[] m_responseBytes;
 
         enum ble_msg_types
         {
@@ -170,12 +177,10 @@ namespace BleDriver
         /// <param name="port">ex. "COM23"</param>
         public BLE112(string port)
         {
-            m_rx = new byte[MAX_RECEIVE_MESSAGE];
-            m_tx = new byte[MAX_TRANSMIT_MESSAGE];
-
-            m_response = new ManualResetEvent(false);
-
             m_port = port;
+
+            m_rx = new byte[MAX_RECEIVE_MESSAGE];
+            m_waitHandleResponse = new ManualResetEvent(false);
         }
 
         /// <summary>
@@ -185,11 +190,28 @@ namespace BleDriver
         /// </summary>
         public virtual void Open()
         {
+            if (!IsOpen)
+            {
+                doOpen();
+                ble_cmd_system_reset(0);
+                Close();
+                doOpen();
+
+                Info = ble_cmd_system_get_info();
+                log(string.Format("Build: {0}, protocol version: {1}, hardware: {2}", Info.build, Info.protocol_version,
+                    Info.hw == 0x01 ? "BLE112" : Info.hw == 0x02 | Info.hw == 0x03 ? "BLED112" : string.Format("Unknown({0})", Info.hw)));
+            }
+        }
+
+        private void doOpen()
+        {
             m_serialPort = new SerialPort(m_port, 256000, Parity.None, 8, StopBits.One);
             // register for data received events
-            m_serialPort.DataReceived += new SerialDataReceivedEventHandler(m_serialPort_DataReceived);
+            m_serialDataReceivedEventHandler = new SerialDataReceivedEventHandler(m_serialPort_DataReceived);
+            m_serialPort.DataReceived += m_serialDataReceivedEventHandler;
             m_serialPort.Open();
             m_stream = m_serialPort.BaseStream;
+            m_rxOffset = 0;
         }
 
         /// <summary>
@@ -197,30 +219,72 @@ namespace BleDriver
         /// </summary>
         public virtual void Close()
         {
-            if (m_stream != null)
-            {
-                try { m_stream.Close(); }
-                catch { }
-                m_stream = null;
-            }
             if (m_serialPort != null)
             {
-                try { m_serialPort.Close(); }
-                catch { }
+                m_serialPort.DataReceived -= m_serialDataReceivedEventHandler;
+                try { m_serialPort.Close(); } catch { }
                 m_serialPort = null;
+                m_stream = null;
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="eventBytes"></param>
-        protected virtual void handleEventAsync(byte[] eventBytes)
+        protected virtual void HandleEvent(ble_event evt)
         {
-            // FIXME: better use a more light weight method such as the TPL here, not threads
-            new Thread(new ThreadStart(() => {
-                handleEvent(eventBytes);
-            })).Start();
+            // FIXME: implement
+        }
+
+        private void receive(SerialDataReceivedEventArgs e)
+        {
+            log(string.Format("Received: {0}", m_serialPort.BytesToRead));
+            int read = m_stream.Read(m_rx, m_rxOffset, m_serialPort.BytesToRead);
+            m_rxOffset += read;
+
+            while (true)
+            {
+                log(string.Format("m_rxOffset: {0}", m_rxOffset));
+                if (m_rxOffset < SIZE_HEADER)
+                {
+                    // wait for more data
+                    log(string.Format("Waiting for header: {0}", m_rxOffset));
+                    return;
+                }
+
+                // read payload
+                int length = ((m_rx[0] & 0x7F) << 8) | m_rx[1];
+                log(string.Format("length: {0}", length));
+                if (m_rxOffset < SIZE_HEADER + length)
+                {
+                    // wait for more data
+                    log(string.Format("Waiting for more data, expected {1}, got {0}", SIZE_HEADER + length, m_rxOffset));
+                    return;
+                }
+
+                // full msg in m_rx, evt or rsp ?
+                byte[] evtRspBuffer = new byte[SIZE_HEADER + length];
+                Array.Copy(m_rx, evtRspBuffer, evtRspBuffer.Length);
+                // remove first event
+                int excessBytes = m_rxOffset - evtRspBuffer.Length;
+                for (int i = 0; i < excessBytes; i++)
+                {
+                    m_rx[i] = m_rx[evtRspBuffer.Length + i];
+                }
+                m_rxOffset -= evtRspBuffer.Length;
+                log(string.Format("m_rx_Offset to {0}", m_rxOffset));
+
+                // FIXME: unify evt and rsp
+                if ((evtRspBuffer[0] & 0x80) == 0x80)
+                {
+                    log(string.Format("evt: {0}", length));
+                    ble_event evt = parseEvent(evtRspBuffer);
+                    HandleEvent(evt);
+                }
+                else
+                {
+                    log(string.Format("rsp: {0}", length));
+                    m_responseBytes = evtRspBuffer;
+                    m_waitHandleResponse.Set();
+                }
+            }
         }
 
         /// <summary>
@@ -228,48 +292,17 @@ namespace BleDriver
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void m_serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void m_serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            log(string.Format("Received: {0}", m_serialPort.BytesToRead));
-            int read = m_stream.Read(m_rx, m_rxOffset, m_serialPort.BytesToRead);
-            m_rxOffset += read;
-
-            log(string.Format("m_rxOffset: {0}", m_rxOffset));
-            if (m_rxOffset < SIZE_HEADER)
+            try
             {
-                // wait for more data
-                log(string.Format("Waiting for header: {0}", m_rxOffset));
-                return;
+                receive(e);
             }
-
-            // read payload
-            int length = ((m_rx[0] & 0x7F) << 8) | m_rx[1];
-            log(string.Format("length: {0}", length));
-            if (m_rxOffset < SIZE_HEADER + length)
+            catch (Exception ee)
             {
-                // wait for more data
-                log(string.Format("Waiting for more data, expected {1}, got {0}", SIZE_HEADER + length, m_rxOffset));
-                return;
+                // fatal: don't let it bubble up the stack
+                Debugger.Break();
             }
-
-            // full msg in m_rx, evt or rsp ?
-            if ((m_rx[0] & 0x80) == 0x80)
-            {
-                log(string.Format("evt: {0}", length));
-                // evt, schedule task
-                byte[] evtBuffer = new byte[SIZE_HEADER + length];
-                Array.Copy(m_rx, evtBuffer, SIZE_HEADER + length);
-                handleEventAsync(evtBuffer);
-            }
-            else
-            {
-                log(string.Format("rsp: {0}", length));
-                Array.Copy(m_rx, m_tx, m_rxOffset);
-                // notify waiting xSend()
-                m_response.Set();
-            }
-            m_rxOffset = 0;
-            log(string.Format("m_rx_Offset to 0"));
         }
 
         /// <summary>
@@ -297,8 +330,10 @@ namespace BleDriver
         {
             try
             {
+                Open();
                 // wait for response
-                m_response.Reset();
+                m_waitHandleResponse.Reset();
+                m_responseBytes = null;
                 // write command
                 m_stream.Write(command, offset, length);
 
@@ -308,13 +343,11 @@ namespace BleDriver
                 }
 
                 // what is the maximum expected wait time for a response
-                if (!m_response.WaitOne(3000))
+                if (!m_waitHandleResponse.WaitOne(2000))
                 {
                     throw new BLE112Exception("Response timeout");
                 }
-
-                // response in tx buffer
-                return command;
+                return m_responseBytes;
             }
             catch (Exception e)
             {

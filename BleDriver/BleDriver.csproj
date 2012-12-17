@@ -40,6 +40,7 @@
     <Compile Include="BLE112.cs" />
     <Compile Include="BLE112.g.cs" />
     <Compile Include="BLE112Exception.cs" />
+    <Compile Include="ble_event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -300,23 +300,23 @@ namespace BleDriver {
         public const byte GAP_AD_FLAG_SIMULTANEOUS_LEBREDR_HOST = 0x20;
         public const byte GAP_AD_FLAG_MASK = 0x1f;
 
-        public class ble_msg_system_address_get_rsp_t
+        public class ble_msg_system_address_get_rsp_t : ble_event
         {
             public bd_addr address;
         }
 
-        public class ble_msg_system_reg_write_rsp_t
+        public class ble_msg_system_reg_write_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_system_reg_read_rsp_t
+        public class ble_msg_system_reg_read_rsp_t : ble_event
         {
             public int address;
             public int value;
         }
 
-        public class ble_msg_system_get_counters_rsp_t
+        public class ble_msg_system_get_counters_rsp_t : ble_event
         {
             public int txok;
             public int txretry;
@@ -325,18 +325,18 @@ namespace BleDriver {
             public int mbuf;
         }
 
-        public class ble_msg_system_get_connections_rsp_t
+        public class ble_msg_system_get_connections_rsp_t : ble_event
         {
             public int maxconn;
         }
 
-        public class ble_msg_system_read_memory_rsp_t
+        public class ble_msg_system_read_memory_rsp_t : ble_event
         {
             public int address;
             public byte[] data;
         }
 
-        public class ble_msg_system_get_info_rsp_t
+        public class ble_msg_system_get_info_rsp_t : ble_event
         {
             public int major;
             public int minor;
@@ -347,54 +347,54 @@ namespace BleDriver {
             public int hw;
         }
 
-        public class ble_msg_system_endpoint_tx_rsp_t
+        public class ble_msg_system_endpoint_tx_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_system_whitelist_append_rsp_t
+        public class ble_msg_system_whitelist_append_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_system_whitelist_remove_rsp_t
+        public class ble_msg_system_whitelist_remove_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_system_endpoint_rx_rsp_t
+        public class ble_msg_system_endpoint_rx_rsp_t : ble_event
         {
             public int result;
             public byte[] data;
         }
 
-        public class ble_msg_system_endpoint_set_watermarks_rsp_t
+        public class ble_msg_system_endpoint_set_watermarks_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_flash_ps_save_rsp_t
+        public class ble_msg_flash_ps_save_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_flash_ps_load_rsp_t
+        public class ble_msg_flash_ps_load_rsp_t : ble_event
         {
             public int result;
             public byte[] value;
         }
 
-        public class ble_msg_flash_erase_page_rsp_t
+        public class ble_msg_flash_erase_page_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_attributes_write_rsp_t
+        public class ble_msg_attributes_write_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_attributes_read_rsp_t
+        public class ble_msg_attributes_read_rsp_t : ble_event
         {
             public int handle;
             public int offset;
@@ -402,290 +402,290 @@ namespace BleDriver {
             public byte[] value;
         }
 
-        public class ble_msg_attributes_read_type_rsp_t
+        public class ble_msg_attributes_read_type_rsp_t : ble_event
         {
             public int handle;
             public int result;
             public byte[] value;
         }
 
-        public class ble_msg_connection_disconnect_rsp_t
+        public class ble_msg_connection_disconnect_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_connection_get_rssi_rsp_t
+        public class ble_msg_connection_get_rssi_rsp_t : ble_event
         {
             public int connection;
             public int rssi;
         }
 
-        public class ble_msg_connection_update_rsp_t
+        public class ble_msg_connection_update_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_connection_version_update_rsp_t
+        public class ble_msg_connection_version_update_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_connection_channel_map_get_rsp_t
+        public class ble_msg_connection_channel_map_get_rsp_t : ble_event
         {
             public int connection;
             public byte[] map;
         }
 
-        public class ble_msg_connection_channel_map_set_rsp_t
+        public class ble_msg_connection_channel_map_set_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_connection_features_get_rsp_t
+        public class ble_msg_connection_features_get_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_connection_get_status_rsp_t
+        public class ble_msg_connection_get_status_rsp_t : ble_event
         {
             public int connection;
         }
 
-        public class ble_msg_connection_raw_tx_rsp_t
+        public class ble_msg_connection_raw_tx_rsp_t : ble_event
         {
             public int connection;
         }
 
-        public class ble_msg_attclient_find_by_type_value_rsp_t
-        {
-            public int connection;
-            public int result;
-        }
-
-        public class ble_msg_attclient_read_by_group_type_rsp_t
+        public class ble_msg_attclient_find_by_type_value_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_read_by_type_rsp_t
+        public class ble_msg_attclient_read_by_group_type_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_find_information_rsp_t
+        public class ble_msg_attclient_read_by_type_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_read_by_handle_rsp_t
+        public class ble_msg_attclient_find_information_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_attribute_write_rsp_t
+        public class ble_msg_attclient_read_by_handle_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_write_command_rsp_t
+        public class ble_msg_attclient_attribute_write_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_indicate_confirm_rsp_t
-        {
-            public int result;
-        }
-
-        public class ble_msg_attclient_read_long_rsp_t
+        public class ble_msg_attclient_write_command_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_prepare_write_rsp_t
+        public class ble_msg_attclient_indicate_confirm_rsp_t : ble_event
+        {
+            public int result;
+        }
+
+        public class ble_msg_attclient_read_long_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_execute_write_rsp_t
+        public class ble_msg_attclient_prepare_write_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_attclient_read_multiple_rsp_t
+        public class ble_msg_attclient_execute_write_rsp_t : ble_event
         {
             public int connection;
             public int result;
         }
 
-        public class ble_msg_sm_encrypt_start_rsp_t
+        public class ble_msg_attclient_read_multiple_rsp_t : ble_event
+        {
+            public int connection;
+            public int result;
+        }
+
+        public class ble_msg_sm_encrypt_start_rsp_t : ble_event
         {
             public int handle;
             public int result;
         }
 
-        public class ble_msg_sm_delete_bonding_rsp_t
+        public class ble_msg_sm_delete_bonding_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_sm_passkey_entry_rsp_t
+        public class ble_msg_sm_passkey_entry_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_sm_get_bonds_rsp_t
+        public class ble_msg_sm_get_bonds_rsp_t : ble_event
         {
             public int bonds;
         }
 
-        public class ble_msg_gap_set_mode_rsp_t
+        public class ble_msg_gap_set_mode_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_gap_discover_rsp_t
+        public class ble_msg_gap_discover_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_gap_connect_direct_rsp_t
-        {
-            public int result;
-            public int connection_handle;
-        }
-
-        public class ble_msg_gap_end_procedure_rsp_t
-        {
-            public int result;
-        }
-
-        public class ble_msg_gap_connect_selective_rsp_t
+        public class ble_msg_gap_connect_direct_rsp_t : ble_event
         {
             public int result;
             public int connection_handle;
         }
 
-        public class ble_msg_gap_set_filtering_rsp_t
+        public class ble_msg_gap_end_procedure_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_gap_set_scan_parameters_rsp_t
+        public class ble_msg_gap_connect_selective_rsp_t : ble_event
+        {
+            public int result;
+            public int connection_handle;
+        }
+
+        public class ble_msg_gap_set_filtering_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_gap_set_adv_parameters_rsp_t
+        public class ble_msg_gap_set_scan_parameters_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_gap_set_adv_data_rsp_t
+        public class ble_msg_gap_set_adv_parameters_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_gap_set_directed_connectable_mode_rsp_t
+        public class ble_msg_gap_set_adv_data_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_io_port_config_irq_rsp_t
+        public class ble_msg_gap_set_directed_connectable_mode_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_set_soft_timer_rsp_t
+        public class ble_msg_hardware_io_port_config_irq_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_adc_read_rsp_t
+        public class ble_msg_hardware_set_soft_timer_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_io_port_config_direction_rsp_t
+        public class ble_msg_hardware_adc_read_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_io_port_config_function_rsp_t
+        public class ble_msg_hardware_io_port_config_direction_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_io_port_config_pull_rsp_t
+        public class ble_msg_hardware_io_port_config_function_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_io_port_write_rsp_t
+        public class ble_msg_hardware_io_port_config_pull_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_io_port_read_rsp_t
+        public class ble_msg_hardware_io_port_write_rsp_t : ble_event
+        {
+            public int result;
+        }
+
+        public class ble_msg_hardware_io_port_read_rsp_t : ble_event
         {
             public int result;
             public int port;
             public int data;
         }
 
-        public class ble_msg_hardware_spi_config_rsp_t
+        public class ble_msg_hardware_spi_config_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_hardware_spi_transfer_rsp_t
+        public class ble_msg_hardware_spi_transfer_rsp_t : ble_event
         {
             public int result;
             public int channel;
             public byte[] data;
         }
 
-        public class ble_msg_hardware_i2c_read_rsp_t
+        public class ble_msg_hardware_i2c_read_rsp_t : ble_event
         {
             public int result;
             public byte[] data;
         }
 
-        public class ble_msg_hardware_i2c_write_rsp_t
+        public class ble_msg_hardware_i2c_write_rsp_t : ble_event
         {
             public int written;
         }
 
-        public class ble_msg_hardware_timer_comparator_rsp_t
+        public class ble_msg_hardware_timer_comparator_rsp_t : ble_event
         {
             public int result;
         }
 
-        public class ble_msg_test_phy_end_rsp_t
+        public class ble_msg_test_phy_end_rsp_t : ble_event
         {
             public int counter;
         }
 
-        public class ble_msg_test_get_channel_map_rsp_t
+        public class ble_msg_test_get_channel_map_rsp_t : ble_event
         {
             public byte[] channel_map;
         }
 
-        public class ble_msg_test_debug_rsp_t
+        public class ble_msg_test_debug_rsp_t : ble_event
         {
             public byte[] output;
         }
@@ -693,42 +693,45 @@ namespace BleDriver {
         public void ble_cmd_system_reset(int boot_in_dfu)
         {
             log("ble_cmd_system_reset_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_reset_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_reset_id;
             // data
-            m_tx[idx++] = (byte)boot_in_dfu;
+            _data[idx++] = (byte)boot_in_dfu;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, true);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, true);
         }
 
         public void ble_cmd_system_hello()
         {
             log("ble_cmd_system_hello_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_hello_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_hello_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
         }
 
         public ble_msg_system_address_get_rsp_t ble_cmd_system_address_get()
         {
             log("ble_cmd_system_address_get_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_address_get_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_address_get_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_address_get_rsp_t res = new ble_msg_system_address_get_rsp_t();
@@ -743,18 +746,19 @@ namespace BleDriver {
         public ble_msg_system_reg_write_rsp_t ble_cmd_system_reg_write(int address, int value)
         {
             log("ble_cmd_system_reg_write_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_reg_write_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_reg_write_id;
             // data
-            m_tx[idx++] = (byte)address;
-            m_tx[idx++] = (byte)(address >> 8);
-            m_tx[idx++] = (byte)value;
+            _data[idx++] = (byte)address;
+            _data[idx++] = (byte)(address >> 8);
+            _data[idx++] = (byte)value;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_reg_write_rsp_t res = new ble_msg_system_reg_write_rsp_t();
@@ -765,17 +769,18 @@ namespace BleDriver {
         public ble_msg_system_reg_read_rsp_t ble_cmd_system_reg_read(int address)
         {
             log("ble_cmd_system_reg_read_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_reg_read_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_reg_read_id;
             // data
-            m_tx[idx++] = (byte)address;
-            m_tx[idx++] = (byte)(address >> 8);
+            _data[idx++] = (byte)address;
+            _data[idx++] = (byte)(address >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_reg_read_rsp_t res = new ble_msg_system_reg_read_rsp_t();
@@ -787,14 +792,15 @@ namespace BleDriver {
         public ble_msg_system_get_counters_rsp_t ble_cmd_system_get_counters()
         {
             log("ble_cmd_system_get_counters_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_get_counters_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_get_counters_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_get_counters_rsp_t res = new ble_msg_system_get_counters_rsp_t();
@@ -809,14 +815,15 @@ namespace BleDriver {
         public ble_msg_system_get_connections_rsp_t ble_cmd_system_get_connections()
         {
             log("ble_cmd_system_get_connections_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_get_connections_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_get_connections_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_get_connections_rsp_t res = new ble_msg_system_get_connections_rsp_t();
@@ -827,20 +834,21 @@ namespace BleDriver {
         public ble_msg_system_read_memory_rsp_t ble_cmd_system_read_memory(int address, int length)
         {
             log("ble_cmd_system_read_memory_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 4 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 4 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_read_memory_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 4 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_read_memory_id;
             // data
-            m_tx[idx++] = (byte)address;
-            m_tx[idx++] = (byte)(address >> 8);
-            m_tx[idx++] = (byte)(address >> 16);
-            m_tx[idx++] = (byte)(address >> 24);
-            m_tx[idx++] = (byte)length;
+            _data[idx++] = (byte)address;
+            _data[idx++] = (byte)(address >> 8);
+            _data[idx++] = (byte)(address >> 16);
+            _data[idx++] = (byte)(address >> 24);
+            _data[idx++] = (byte)length;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 4 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 4 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_read_memory_rsp_t res = new ble_msg_system_read_memory_rsp_t();
@@ -856,14 +864,15 @@ namespace BleDriver {
         public ble_msg_system_get_info_rsp_t ble_cmd_system_get_info()
         {
             log("ble_cmd_system_get_info_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_get_info_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_get_info_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_get_info_rsp_t res = new ble_msg_system_get_info_rsp_t();
@@ -880,21 +889,22 @@ namespace BleDriver {
         public ble_msg_system_endpoint_tx_rsp_t ble_cmd_system_endpoint_tx(int endpoint, byte[] data)
         {
             log("ble_cmd_system_endpoint_tx_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_endpoint_tx_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_endpoint_tx_id;
             // data
-            m_tx[idx++] = (byte)endpoint;
-            m_tx[idx++] = (byte)(data.Length);
+            _data[idx++] = (byte)endpoint;
+            _data[idx++] = (byte)(data.Length);
             for(int i = 0; i < data.Length; i++)
             {
-                m_tx[idx++] = data[i];
+                _data[idx++] = data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_endpoint_tx_rsp_t res = new ble_msg_system_endpoint_tx_rsp_t();
@@ -905,20 +915,21 @@ namespace BleDriver {
         public ble_msg_system_whitelist_append_rsp_t ble_cmd_system_whitelist_append(bd_addr address, int address_type)
         {
             log("ble_cmd_system_whitelist_append_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + address.Length + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_append_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + address.Length + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_append_id;
             // data
             for(int i = 0; i < address.Length; i++)
             {
-                m_tx[idx++] = address.Address[i];
+                _data[idx++] = address.Address[i];
             }
-            m_tx[idx++] = (byte)address_type;
+            _data[idx++] = (byte)address_type;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_whitelist_append_rsp_t res = new ble_msg_system_whitelist_append_rsp_t();
@@ -929,20 +940,21 @@ namespace BleDriver {
         public ble_msg_system_whitelist_remove_rsp_t ble_cmd_system_whitelist_remove(bd_addr address, int address_type)
         {
             log("ble_cmd_system_whitelist_remove_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + address.Length + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_remove_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + address.Length + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_remove_id;
             // data
             for(int i = 0; i < address.Length; i++)
             {
-                m_tx[idx++] = address.Address[i];
+                _data[idx++] = address.Address[i];
             }
-            m_tx[idx++] = (byte)address_type;
+            _data[idx++] = (byte)address_type;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_whitelist_remove_rsp_t res = new ble_msg_system_whitelist_remove_rsp_t();
@@ -953,30 +965,32 @@ namespace BleDriver {
         public void ble_cmd_system_whitelist_clear()
         {
             log("ble_cmd_system_whitelist_clear_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_clear_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_clear_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
         }
 
         public ble_msg_system_endpoint_rx_rsp_t ble_cmd_system_endpoint_rx(int endpoint, int size)
         {
             log("ble_cmd_system_endpoint_rx_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_endpoint_rx_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_endpoint_rx_id;
             // data
-            m_tx[idx++] = (byte)endpoint;
-            m_tx[idx++] = (byte)size;
+            _data[idx++] = (byte)endpoint;
+            _data[idx++] = (byte)size;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_endpoint_rx_rsp_t res = new ble_msg_system_endpoint_rx_rsp_t();
@@ -992,18 +1006,19 @@ namespace BleDriver {
         public ble_msg_system_endpoint_set_watermarks_rsp_t ble_cmd_system_endpoint_set_watermarks(int endpoint, int rx, int tx)
         {
             log("ble_cmd_system_endpoint_set_watermarks_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_system;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_system_endpoint_set_watermarks_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_system;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_system_endpoint_set_watermarks_id;
             // data
-            m_tx[idx++] = (byte)endpoint;
-            m_tx[idx++] = (byte)rx;
-            m_tx[idx++] = (byte)tx;
+            _data[idx++] = (byte)endpoint;
+            _data[idx++] = (byte)rx;
+            _data[idx++] = (byte)tx;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_system_endpoint_set_watermarks_rsp_t res = new ble_msg_system_endpoint_set_watermarks_rsp_t();
@@ -1014,61 +1029,65 @@ namespace BleDriver {
         public void ble_cmd_flash_ps_defrag()
         {
             log("ble_cmd_flash_ps_defrag_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_defrag_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_defrag_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
         }
 
         public void ble_cmd_flash_ps_dump()
         {
             log("ble_cmd_flash_ps_dump_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_dump_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_dump_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
         }
 
         public void ble_cmd_flash_ps_erase_all()
         {
             log("ble_cmd_flash_ps_erase_all_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_erase_all_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_erase_all_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
         }
 
         public ble_msg_flash_ps_save_rsp_t ble_cmd_flash_ps_save(int key, byte[] value)
         {
             log("ble_cmd_flash_ps_save_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 1 + value.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 1 + value.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_save_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 1 + value.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_save_id;
             // data
-            m_tx[idx++] = (byte)key;
-            m_tx[idx++] = (byte)(key >> 8);
-            m_tx[idx++] = (byte)(value.Length);
+            _data[idx++] = (byte)key;
+            _data[idx++] = (byte)(key >> 8);
+            _data[idx++] = (byte)(value.Length);
             for(int i = 0; i < value.Length; i++)
             {
-                m_tx[idx++] = value[i];
+                _data[idx++] = value[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 1 + value.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 1 + value.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_flash_ps_save_rsp_t res = new ble_msg_flash_ps_save_rsp_t();
@@ -1079,17 +1098,18 @@ namespace BleDriver {
         public ble_msg_flash_ps_load_rsp_t ble_cmd_flash_ps_load(int key)
         {
             log("ble_cmd_flash_ps_load_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_load_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_load_id;
             // data
-            m_tx[idx++] = (byte)key;
-            m_tx[idx++] = (byte)(key >> 8);
+            _data[idx++] = (byte)key;
+            _data[idx++] = (byte)(key >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_flash_ps_load_rsp_t res = new ble_msg_flash_ps_load_rsp_t();
@@ -1105,32 +1125,34 @@ namespace BleDriver {
         public void ble_cmd_flash_ps_erase(int key)
         {
             log("ble_cmd_flash_ps_erase_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_erase_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_erase_id;
             // data
-            m_tx[idx++] = (byte)key;
-            m_tx[idx++] = (byte)(key >> 8);
+            _data[idx++] = (byte)key;
+            _data[idx++] = (byte)(key >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2, false);
         }
 
         public ble_msg_flash_erase_page_rsp_t ble_cmd_flash_erase_page(int page)
         {
             log("ble_cmd_flash_erase_page_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_erase_page_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_erase_page_id;
             // data
-            m_tx[idx++] = (byte)page;
+            _data[idx++] = (byte)page;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_flash_erase_page_rsp_t res = new ble_msg_flash_erase_page_rsp_t();
@@ -1141,44 +1163,46 @@ namespace BleDriver {
         public void ble_cmd_flash_write_words(int address, byte[] words)
         {
             log("ble_cmd_flash_write_words_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 1 + words.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 1 + words.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_flash;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_flash_write_words_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 1 + words.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_flash;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_write_words_id;
             // data
-            m_tx[idx++] = (byte)address;
-            m_tx[idx++] = (byte)(address >> 8);
-            m_tx[idx++] = (byte)(words.Length);
+            _data[idx++] = (byte)address;
+            _data[idx++] = (byte)(address >> 8);
+            _data[idx++] = (byte)(words.Length);
             for(int i = 0; i < words.Length; i++)
             {
-                m_tx[idx++] = words[i];
+                _data[idx++] = words[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 1 + words.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 1 + words.Length, false);
         }
 
         public ble_msg_attributes_write_rsp_t ble_cmd_attributes_write(int handle, int offset, byte[] value)
         {
             log("ble_cmd_attributes_write_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 1 + 1 + value.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 1 + 1 + value.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attributes;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attributes_write_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 1 + 1 + value.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attributes;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attributes_write_id;
             // data
-            m_tx[idx++] = (byte)handle;
-            m_tx[idx++] = (byte)(handle >> 8);
-            m_tx[idx++] = (byte)offset;
-            m_tx[idx++] = (byte)(value.Length);
+            _data[idx++] = (byte)handle;
+            _data[idx++] = (byte)(handle >> 8);
+            _data[idx++] = (byte)offset;
+            _data[idx++] = (byte)(value.Length);
             for(int i = 0; i < value.Length; i++)
             {
-                m_tx[idx++] = value[i];
+                _data[idx++] = value[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 1 + 1 + value.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 1 + 1 + value.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attributes_write_rsp_t res = new ble_msg_attributes_write_rsp_t();
@@ -1189,19 +1213,20 @@ namespace BleDriver {
         public ble_msg_attributes_read_rsp_t ble_cmd_attributes_read(int handle, int offset)
         {
             log("ble_cmd_attributes_read_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attributes;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attributes_read_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_attributes;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attributes_read_id;
             // data
-            m_tx[idx++] = (byte)handle;
-            m_tx[idx++] = (byte)(handle >> 8);
-            m_tx[idx++] = (byte)offset;
-            m_tx[idx++] = (byte)(offset >> 8);
+            _data[idx++] = (byte)handle;
+            _data[idx++] = (byte)(handle >> 8);
+            _data[idx++] = (byte)offset;
+            _data[idx++] = (byte)(offset >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attributes_read_rsp_t res = new ble_msg_attributes_read_rsp_t();
@@ -1219,17 +1244,18 @@ namespace BleDriver {
         public ble_msg_attributes_read_type_rsp_t ble_cmd_attributes_read_type(int handle)
         {
             log("ble_cmd_attributes_read_type_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attributes;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attributes_read_type_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_attributes;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attributes_read_type_id;
             // data
-            m_tx[idx++] = (byte)handle;
-            m_tx[idx++] = (byte)(handle >> 8);
+            _data[idx++] = (byte)handle;
+            _data[idx++] = (byte)(handle >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attributes_read_type_rsp_t res = new ble_msg_attributes_read_type_rsp_t();
@@ -1246,53 +1272,56 @@ namespace BleDriver {
         public void ble_cmd_attributes_user_read_response(int connection, int att_error, byte[] value)
         {
             log("ble_cmd_attributes_user_read_response_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1 + value.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1 + value.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attributes;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attributes_user_read_response_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1 + value.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attributes;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attributes_user_read_response_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)att_error;
-            m_tx[idx++] = (byte)(value.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)att_error;
+            _data[idx++] = (byte)(value.Length);
             for(int i = 0; i < value.Length; i++)
             {
-                m_tx[idx++] = value[i];
+                _data[idx++] = value[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + value.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + value.Length, false);
         }
 
         public void ble_cmd_attributes_user_write_response(int connection, int att_error)
         {
             log("ble_cmd_attributes_user_write_response_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attributes;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attributes_user_write_response_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_attributes;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attributes_user_write_response_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)att_error;
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)att_error;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
         }
 
         public ble_msg_connection_disconnect_rsp_t ble_cmd_connection_disconnect(int connection)
         {
             log("ble_cmd_connection_disconnect_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_disconnect_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_disconnect_id;
             // data
-            m_tx[idx++] = (byte)connection;
+            _data[idx++] = (byte)connection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_disconnect_rsp_t res = new ble_msg_connection_disconnect_rsp_t();
@@ -1304,16 +1333,17 @@ namespace BleDriver {
         public ble_msg_connection_get_rssi_rsp_t ble_cmd_connection_get_rssi(int connection)
         {
             log("ble_cmd_connection_get_rssi_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_get_rssi_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_get_rssi_id;
             // data
-            m_tx[idx++] = (byte)connection;
+            _data[idx++] = (byte)connection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_get_rssi_rsp_t res = new ble_msg_connection_get_rssi_rsp_t();
@@ -1325,24 +1355,25 @@ namespace BleDriver {
         public ble_msg_connection_update_rsp_t ble_cmd_connection_update(int connection, int interval_min, int interval_max, int latency, int timeout)
         {
             log("ble_cmd_connection_update_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 2 + 2 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 2 + 2 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_update_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 2 + 2 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_update_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)interval_min;
-            m_tx[idx++] = (byte)(interval_min >> 8);
-            m_tx[idx++] = (byte)interval_max;
-            m_tx[idx++] = (byte)(interval_max >> 8);
-            m_tx[idx++] = (byte)latency;
-            m_tx[idx++] = (byte)(latency >> 8);
-            m_tx[idx++] = (byte)timeout;
-            m_tx[idx++] = (byte)(timeout >> 8);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)interval_min;
+            _data[idx++] = (byte)(interval_min >> 8);
+            _data[idx++] = (byte)interval_max;
+            _data[idx++] = (byte)(interval_max >> 8);
+            _data[idx++] = (byte)latency;
+            _data[idx++] = (byte)(latency >> 8);
+            _data[idx++] = (byte)timeout;
+            _data[idx++] = (byte)(timeout >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 2 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 2 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_update_rsp_t res = new ble_msg_connection_update_rsp_t();
@@ -1354,16 +1385,17 @@ namespace BleDriver {
         public ble_msg_connection_version_update_rsp_t ble_cmd_connection_version_update(int connection)
         {
             log("ble_cmd_connection_version_update_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_version_update_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_version_update_id;
             // data
-            m_tx[idx++] = (byte)connection;
+            _data[idx++] = (byte)connection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_version_update_rsp_t res = new ble_msg_connection_version_update_rsp_t();
@@ -1375,16 +1407,17 @@ namespace BleDriver {
         public ble_msg_connection_channel_map_get_rsp_t ble_cmd_connection_channel_map_get(int connection)
         {
             log("ble_cmd_connection_channel_map_get_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_channel_map_get_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_channel_map_get_id;
             // data
-            m_tx[idx++] = (byte)connection;
+            _data[idx++] = (byte)connection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_channel_map_get_rsp_t res = new ble_msg_connection_channel_map_get_rsp_t();
@@ -1400,21 +1433,22 @@ namespace BleDriver {
         public ble_msg_connection_channel_map_set_rsp_t ble_cmd_connection_channel_map_set(int connection, byte[] map)
         {
             log("ble_cmd_connection_channel_map_set_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + map.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + map.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_channel_map_set_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + map.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_channel_map_set_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)(map.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)(map.Length);
             for(int i = 0; i < map.Length; i++)
             {
-                m_tx[idx++] = map[i];
+                _data[idx++] = map[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + map.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + map.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_channel_map_set_rsp_t res = new ble_msg_connection_channel_map_set_rsp_t();
@@ -1426,16 +1460,17 @@ namespace BleDriver {
         public ble_msg_connection_features_get_rsp_t ble_cmd_connection_features_get(int connection)
         {
             log("ble_cmd_connection_features_get_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_features_get_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_features_get_id;
             // data
-            m_tx[idx++] = (byte)connection;
+            _data[idx++] = (byte)connection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_features_get_rsp_t res = new ble_msg_connection_features_get_rsp_t();
@@ -1447,16 +1482,17 @@ namespace BleDriver {
         public ble_msg_connection_get_status_rsp_t ble_cmd_connection_get_status(int connection)
         {
             log("ble_cmd_connection_get_status_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_get_status_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_get_status_id;
             // data
-            m_tx[idx++] = (byte)connection;
+            _data[idx++] = (byte)connection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_get_status_rsp_t res = new ble_msg_connection_get_status_rsp_t();
@@ -1467,21 +1503,22 @@ namespace BleDriver {
         public ble_msg_connection_raw_tx_rsp_t ble_cmd_connection_raw_tx(int connection, byte[] data)
         {
             log("ble_cmd_connection_raw_tx_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_connection;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_connection_raw_tx_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_raw_tx_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)(data.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)(data.Length);
             for(int i = 0; i < data.Length; i++)
             {
-                m_tx[idx++] = data[i];
+                _data[idx++] = data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_connection_raw_tx_rsp_t res = new ble_msg_connection_raw_tx_rsp_t();
@@ -1492,27 +1529,28 @@ namespace BleDriver {
         public ble_msg_attclient_find_by_type_value_rsp_t ble_cmd_attclient_find_by_type_value(int connection, int start, int end, int uuid, byte[] value)
         {
             log("ble_cmd_attclient_find_by_type_value_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 2 + 2 + 1 + value.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 2 + 2 + 1 + value.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_find_by_type_value_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 2 + 2 + 1 + value.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_find_by_type_value_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)start;
-            m_tx[idx++] = (byte)(start >> 8);
-            m_tx[idx++] = (byte)end;
-            m_tx[idx++] = (byte)(end >> 8);
-            m_tx[idx++] = (byte)uuid;
-            m_tx[idx++] = (byte)(uuid >> 8);
-            m_tx[idx++] = (byte)(value.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)start;
+            _data[idx++] = (byte)(start >> 8);
+            _data[idx++] = (byte)end;
+            _data[idx++] = (byte)(end >> 8);
+            _data[idx++] = (byte)uuid;
+            _data[idx++] = (byte)(uuid >> 8);
+            _data[idx++] = (byte)(value.Length);
             for(int i = 0; i < value.Length; i++)
             {
-                m_tx[idx++] = value[i];
+                _data[idx++] = value[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 2 + 1 + value.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 2 + 1 + value.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_find_by_type_value_rsp_t res = new ble_msg_attclient_find_by_type_value_rsp_t();
@@ -1524,25 +1562,26 @@ namespace BleDriver {
         public ble_msg_attclient_read_by_group_type_rsp_t ble_cmd_attclient_read_by_group_type(int connection, int start, int end, byte[] uuid)
         {
             log("ble_cmd_attclient_read_by_group_type_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 2 + 1 + uuid.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 2 + 1 + uuid.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_by_group_type_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 2 + 1 + uuid.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_by_group_type_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)start;
-            m_tx[idx++] = (byte)(start >> 8);
-            m_tx[idx++] = (byte)end;
-            m_tx[idx++] = (byte)(end >> 8);
-            m_tx[idx++] = (byte)(uuid.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)start;
+            _data[idx++] = (byte)(start >> 8);
+            _data[idx++] = (byte)end;
+            _data[idx++] = (byte)(end >> 8);
+            _data[idx++] = (byte)(uuid.Length);
             for(int i = 0; i < uuid.Length; i++)
             {
-                m_tx[idx++] = uuid[i];
+                _data[idx++] = uuid[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 1 + uuid.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 1 + uuid.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_read_by_group_type_rsp_t res = new ble_msg_attclient_read_by_group_type_rsp_t();
@@ -1554,25 +1593,26 @@ namespace BleDriver {
         public ble_msg_attclient_read_by_type_rsp_t ble_cmd_attclient_read_by_type(int connection, int start, int end, byte[] uuid)
         {
             log("ble_cmd_attclient_read_by_type_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 2 + 1 + uuid.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 2 + 1 + uuid.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_by_type_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 2 + 1 + uuid.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_by_type_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)start;
-            m_tx[idx++] = (byte)(start >> 8);
-            m_tx[idx++] = (byte)end;
-            m_tx[idx++] = (byte)(end >> 8);
-            m_tx[idx++] = (byte)(uuid.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)start;
+            _data[idx++] = (byte)(start >> 8);
+            _data[idx++] = (byte)end;
+            _data[idx++] = (byte)(end >> 8);
+            _data[idx++] = (byte)(uuid.Length);
             for(int i = 0; i < uuid.Length; i++)
             {
-                m_tx[idx++] = uuid[i];
+                _data[idx++] = uuid[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 1 + uuid.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 1 + uuid.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_read_by_type_rsp_t res = new ble_msg_attclient_read_by_type_rsp_t();
@@ -1584,20 +1624,21 @@ namespace BleDriver {
         public ble_msg_attclient_find_information_rsp_t ble_cmd_attclient_find_information(int connection, int start, int end)
         {
             log("ble_cmd_attclient_find_information_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_find_information_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_find_information_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)start;
-            m_tx[idx++] = (byte)(start >> 8);
-            m_tx[idx++] = (byte)end;
-            m_tx[idx++] = (byte)(end >> 8);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)start;
+            _data[idx++] = (byte)(start >> 8);
+            _data[idx++] = (byte)end;
+            _data[idx++] = (byte)(end >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_find_information_rsp_t res = new ble_msg_attclient_find_information_rsp_t();
@@ -1609,18 +1650,19 @@ namespace BleDriver {
         public ble_msg_attclient_read_by_handle_rsp_t ble_cmd_attclient_read_by_handle(int connection, int chrhandle)
         {
             log("ble_cmd_attclient_read_by_handle_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_by_handle_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_by_handle_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)chrhandle;
-            m_tx[idx++] = (byte)(chrhandle >> 8);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)chrhandle;
+            _data[idx++] = (byte)(chrhandle >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_read_by_handle_rsp_t res = new ble_msg_attclient_read_by_handle_rsp_t();
@@ -1632,23 +1674,24 @@ namespace BleDriver {
         public ble_msg_attclient_attribute_write_rsp_t ble_cmd_attclient_attribute_write(int connection, int atthandle, byte[] data)
         {
             log("ble_cmd_attclient_attribute_write_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 1 + data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 1 + data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_attribute_write_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 1 + data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_attribute_write_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)atthandle;
-            m_tx[idx++] = (byte)(atthandle >> 8);
-            m_tx[idx++] = (byte)(data.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)atthandle;
+            _data[idx++] = (byte)(atthandle >> 8);
+            _data[idx++] = (byte)(data.Length);
             for(int i = 0; i < data.Length; i++)
             {
-                m_tx[idx++] = data[i];
+                _data[idx++] = data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 1 + data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 1 + data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_attribute_write_rsp_t res = new ble_msg_attclient_attribute_write_rsp_t();
@@ -1660,23 +1703,24 @@ namespace BleDriver {
         public ble_msg_attclient_write_command_rsp_t ble_cmd_attclient_write_command(int connection, int atthandle, byte[] data)
         {
             log("ble_cmd_attclient_write_command_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 1 + data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 1 + data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_write_command_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 1 + data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_write_command_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)atthandle;
-            m_tx[idx++] = (byte)(atthandle >> 8);
-            m_tx[idx++] = (byte)(data.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)atthandle;
+            _data[idx++] = (byte)(atthandle >> 8);
+            _data[idx++] = (byte)(data.Length);
             for(int i = 0; i < data.Length; i++)
             {
-                m_tx[idx++] = data[i];
+                _data[idx++] = data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 1 + data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 1 + data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_write_command_rsp_t res = new ble_msg_attclient_write_command_rsp_t();
@@ -1688,16 +1732,17 @@ namespace BleDriver {
         public ble_msg_attclient_indicate_confirm_rsp_t ble_cmd_attclient_indicate_confirm(int connection)
         {
             log("ble_cmd_attclient_indicate_confirm_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_indicate_confirm_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_indicate_confirm_id;
             // data
-            m_tx[idx++] = (byte)connection;
+            _data[idx++] = (byte)connection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_indicate_confirm_rsp_t res = new ble_msg_attclient_indicate_confirm_rsp_t();
@@ -1708,18 +1753,19 @@ namespace BleDriver {
         public ble_msg_attclient_read_long_rsp_t ble_cmd_attclient_read_long(int connection, int chrhandle)
         {
             log("ble_cmd_attclient_read_long_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_long_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_long_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)chrhandle;
-            m_tx[idx++] = (byte)(chrhandle >> 8);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)chrhandle;
+            _data[idx++] = (byte)(chrhandle >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_read_long_rsp_t res = new ble_msg_attclient_read_long_rsp_t();
@@ -1731,25 +1777,26 @@ namespace BleDriver {
         public ble_msg_attclient_prepare_write_rsp_t ble_cmd_attclient_prepare_write(int connection, int atthandle, int offset, byte[] data)
         {
             log("ble_cmd_attclient_prepare_write_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 2 + 2 + 1 + data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 2 + 2 + 1 + data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_prepare_write_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 2 + 2 + 1 + data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_prepare_write_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)atthandle;
-            m_tx[idx++] = (byte)(atthandle >> 8);
-            m_tx[idx++] = (byte)offset;
-            m_tx[idx++] = (byte)(offset >> 8);
-            m_tx[idx++] = (byte)(data.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)atthandle;
+            _data[idx++] = (byte)(atthandle >> 8);
+            _data[idx++] = (byte)offset;
+            _data[idx++] = (byte)(offset >> 8);
+            _data[idx++] = (byte)(data.Length);
             for(int i = 0; i < data.Length; i++)
             {
-                m_tx[idx++] = data[i];
+                _data[idx++] = data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 1 + data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 2 + 2 + 1 + data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_prepare_write_rsp_t res = new ble_msg_attclient_prepare_write_rsp_t();
@@ -1761,17 +1808,18 @@ namespace BleDriver {
         public ble_msg_attclient_execute_write_rsp_t ble_cmd_attclient_execute_write(int connection, int commit)
         {
             log("ble_cmd_attclient_execute_write_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_execute_write_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_execute_write_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)commit;
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)commit;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_execute_write_rsp_t res = new ble_msg_attclient_execute_write_rsp_t();
@@ -1783,21 +1831,22 @@ namespace BleDriver {
         public ble_msg_attclient_read_multiple_rsp_t ble_cmd_attclient_read_multiple(int connection, byte[] handles)
         {
             log("ble_cmd_attclient_read_multiple_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + handles.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + handles.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_attclient;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_multiple_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + handles.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_attclient;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_attclient_read_multiple_id;
             // data
-            m_tx[idx++] = (byte)connection;
-            m_tx[idx++] = (byte)(handles.Length);
+            _data[idx++] = (byte)connection;
+            _data[idx++] = (byte)(handles.Length);
             for(int i = 0; i < handles.Length; i++)
             {
-                m_tx[idx++] = handles[i];
+                _data[idx++] = handles[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + handles.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + handles.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_attclient_read_multiple_rsp_t res = new ble_msg_attclient_read_multiple_rsp_t();
@@ -1809,17 +1858,18 @@ namespace BleDriver {
         public ble_msg_sm_encrypt_start_rsp_t ble_cmd_sm_encrypt_start(int handle, int bonding)
         {
             log("ble_cmd_sm_encrypt_start_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_sm;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_sm_encrypt_start_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_sm;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_sm_encrypt_start_id;
             // data
-            m_tx[idx++] = (byte)handle;
-            m_tx[idx++] = (byte)bonding;
+            _data[idx++] = (byte)handle;
+            _data[idx++] = (byte)bonding;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_sm_encrypt_start_rsp_t res = new ble_msg_sm_encrypt_start_rsp_t();
@@ -1831,31 +1881,33 @@ namespace BleDriver {
         public void ble_cmd_sm_set_bondable_mode(int bondable)
         {
             log("ble_cmd_sm_set_bondable_mode_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_sm;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_sm_set_bondable_mode_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_sm;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_sm_set_bondable_mode_id;
             // data
-            m_tx[idx++] = (byte)bondable;
+            _data[idx++] = (byte)bondable;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
         }
 
         public ble_msg_sm_delete_bonding_rsp_t ble_cmd_sm_delete_bonding(int handle)
         {
             log("ble_cmd_sm_delete_bonding_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_sm;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_sm_delete_bonding_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_sm;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_sm_delete_bonding_id;
             // data
-            m_tx[idx++] = (byte)handle;
+            _data[idx++] = (byte)handle;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_sm_delete_bonding_rsp_t res = new ble_msg_sm_delete_bonding_rsp_t();
@@ -1866,37 +1918,39 @@ namespace BleDriver {
         public void ble_cmd_sm_set_parameters(int mitm, int min_key_size, int io_capabilities)
         {
             log("ble_cmd_sm_set_parameters_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_sm;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_sm_set_parameters_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_sm;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_sm_set_parameters_id;
             // data
-            m_tx[idx++] = (byte)mitm;
-            m_tx[idx++] = (byte)min_key_size;
-            m_tx[idx++] = (byte)io_capabilities;
+            _data[idx++] = (byte)mitm;
+            _data[idx++] = (byte)min_key_size;
+            _data[idx++] = (byte)io_capabilities;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
         }
 
         public ble_msg_sm_passkey_entry_rsp_t ble_cmd_sm_passkey_entry(int handle, int passkey)
         {
             log("ble_cmd_sm_passkey_entry_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 4];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 4);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_sm;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_sm_passkey_entry_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 4);
+            _data[idx++] = (byte)ble_classes.ble_cls_sm;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_sm_passkey_entry_id;
             // data
-            m_tx[idx++] = (byte)handle;
-            m_tx[idx++] = (byte)passkey;
-            m_tx[idx++] = (byte)(passkey >> 8);
-            m_tx[idx++] = (byte)(passkey >> 16);
-            m_tx[idx++] = (byte)(passkey >> 24);
+            _data[idx++] = (byte)handle;
+            _data[idx++] = (byte)passkey;
+            _data[idx++] = (byte)(passkey >> 8);
+            _data[idx++] = (byte)(passkey >> 16);
+            _data[idx++] = (byte)(passkey >> 24);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 4, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 4, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_sm_passkey_entry_rsp_t res = new ble_msg_sm_passkey_entry_rsp_t();
@@ -1907,14 +1961,15 @@ namespace BleDriver {
         public ble_msg_sm_get_bonds_rsp_t ble_cmd_sm_get_bonds()
         {
             log("ble_cmd_sm_get_bonds_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_sm;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_sm_get_bonds_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_sm;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_sm_get_bonds_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_sm_get_bonds_rsp_t res = new ble_msg_sm_get_bonds_rsp_t();
@@ -1925,52 +1980,55 @@ namespace BleDriver {
         public void ble_cmd_sm_set_oob_data(byte[] oob)
         {
             log("ble_cmd_sm_set_oob_data_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + oob.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + oob.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_sm;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_sm_set_oob_data_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + oob.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_sm;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_sm_set_oob_data_id;
             // data
-            m_tx[idx++] = (byte)(oob.Length);
+            _data[idx++] = (byte)(oob.Length);
             for(int i = 0; i < oob.Length; i++)
             {
-                m_tx[idx++] = oob[i];
+                _data[idx++] = oob[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + oob.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + oob.Length, false);
         }
 
         public void ble_cmd_gap_set_privacy_flags(int peripheral_privacy, int central_privacy)
         {
             log("ble_cmd_gap_set_privacy_flags_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_privacy_flags_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_privacy_flags_id;
             // data
-            m_tx[idx++] = (byte)peripheral_privacy;
-            m_tx[idx++] = (byte)central_privacy;
+            _data[idx++] = (byte)peripheral_privacy;
+            _data[idx++] = (byte)central_privacy;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
         }
 
         public ble_msg_gap_set_mode_rsp_t ble_cmd_gap_set_mode(int discover, int connect)
         {
             log("ble_cmd_gap_set_mode_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_mode_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_mode_id;
             // data
-            m_tx[idx++] = (byte)discover;
-            m_tx[idx++] = (byte)connect;
+            _data[idx++] = (byte)discover;
+            _data[idx++] = (byte)connect;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_set_mode_rsp_t res = new ble_msg_gap_set_mode_rsp_t();
@@ -1981,16 +2039,17 @@ namespace BleDriver {
         public ble_msg_gap_discover_rsp_t ble_cmd_gap_discover(int mode)
         {
             log("ble_cmd_gap_discover_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_discover_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_discover_id;
             // data
-            m_tx[idx++] = (byte)mode;
+            _data[idx++] = (byte)mode;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_discover_rsp_t res = new ble_msg_gap_discover_rsp_t();
@@ -2001,28 +2060,29 @@ namespace BleDriver {
         public ble_msg_gap_connect_direct_rsp_t ble_cmd_gap_connect_direct(bd_addr address, int addr_type, int conn_interval_min, int conn_interval_max, int timeout, int latency)
         {
             log("ble_cmd_gap_connect_direct_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1 + 2 + 2 + 2 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + address.Length + 1 + 2 + 2 + 2 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_connect_direct_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + address.Length + 1 + 2 + 2 + 2 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_connect_direct_id;
             // data
             for(int i = 0; i < address.Length; i++)
             {
-                m_tx[idx++] = address.Address[i];
+                _data[idx++] = address.Address[i];
             }
-            m_tx[idx++] = (byte)addr_type;
-            m_tx[idx++] = (byte)conn_interval_min;
-            m_tx[idx++] = (byte)(conn_interval_min >> 8);
-            m_tx[idx++] = (byte)conn_interval_max;
-            m_tx[idx++] = (byte)(conn_interval_max >> 8);
-            m_tx[idx++] = (byte)timeout;
-            m_tx[idx++] = (byte)(timeout >> 8);
-            m_tx[idx++] = (byte)latency;
-            m_tx[idx++] = (byte)(latency >> 8);
+            _data[idx++] = (byte)addr_type;
+            _data[idx++] = (byte)conn_interval_min;
+            _data[idx++] = (byte)(conn_interval_min >> 8);
+            _data[idx++] = (byte)conn_interval_max;
+            _data[idx++] = (byte)(conn_interval_max >> 8);
+            _data[idx++] = (byte)timeout;
+            _data[idx++] = (byte)(timeout >> 8);
+            _data[idx++] = (byte)latency;
+            _data[idx++] = (byte)(latency >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1 + 2 + 2 + 2 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1 + 2 + 2 + 2 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_connect_direct_rsp_t res = new ble_msg_gap_connect_direct_rsp_t();
@@ -2034,14 +2094,15 @@ namespace BleDriver {
         public ble_msg_gap_end_procedure_rsp_t ble_cmd_gap_end_procedure()
         {
             log("ble_cmd_gap_end_procedure_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_end_procedure_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_end_procedure_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_end_procedure_rsp_t res = new ble_msg_gap_end_procedure_rsp_t();
@@ -2052,23 +2113,24 @@ namespace BleDriver {
         public ble_msg_gap_connect_selective_rsp_t ble_cmd_gap_connect_selective(int conn_interval_min, int conn_interval_max, int timeout, int latency)
         {
             log("ble_cmd_gap_connect_selective_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 2 + 2 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 2 + 2 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_connect_selective_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 2 + 2 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_connect_selective_id;
             // data
-            m_tx[idx++] = (byte)conn_interval_min;
-            m_tx[idx++] = (byte)(conn_interval_min >> 8);
-            m_tx[idx++] = (byte)conn_interval_max;
-            m_tx[idx++] = (byte)(conn_interval_max >> 8);
-            m_tx[idx++] = (byte)timeout;
-            m_tx[idx++] = (byte)(timeout >> 8);
-            m_tx[idx++] = (byte)latency;
-            m_tx[idx++] = (byte)(latency >> 8);
+            _data[idx++] = (byte)conn_interval_min;
+            _data[idx++] = (byte)(conn_interval_min >> 8);
+            _data[idx++] = (byte)conn_interval_max;
+            _data[idx++] = (byte)(conn_interval_max >> 8);
+            _data[idx++] = (byte)timeout;
+            _data[idx++] = (byte)(timeout >> 8);
+            _data[idx++] = (byte)latency;
+            _data[idx++] = (byte)(latency >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 2 + 2 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 2 + 2 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_connect_selective_rsp_t res = new ble_msg_gap_connect_selective_rsp_t();
@@ -2080,18 +2142,19 @@ namespace BleDriver {
         public ble_msg_gap_set_filtering_rsp_t ble_cmd_gap_set_filtering(int scan_policy, int adv_policy, int scan_duplicate_filtering)
         {
             log("ble_cmd_gap_set_filtering_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_filtering_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_filtering_id;
             // data
-            m_tx[idx++] = (byte)scan_policy;
-            m_tx[idx++] = (byte)adv_policy;
-            m_tx[idx++] = (byte)scan_duplicate_filtering;
+            _data[idx++] = (byte)scan_policy;
+            _data[idx++] = (byte)adv_policy;
+            _data[idx++] = (byte)scan_duplicate_filtering;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_set_filtering_rsp_t res = new ble_msg_gap_set_filtering_rsp_t();
@@ -2102,20 +2165,21 @@ namespace BleDriver {
         public ble_msg_gap_set_scan_parameters_rsp_t ble_cmd_gap_set_scan_parameters(int scan_interval, int scan_window, int active)
         {
             log("ble_cmd_gap_set_scan_parameters_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 2 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 2 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_scan_parameters_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 2 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_scan_parameters_id;
             // data
-            m_tx[idx++] = (byte)scan_interval;
-            m_tx[idx++] = (byte)(scan_interval >> 8);
-            m_tx[idx++] = (byte)scan_window;
-            m_tx[idx++] = (byte)(scan_window >> 8);
-            m_tx[idx++] = (byte)active;
+            _data[idx++] = (byte)scan_interval;
+            _data[idx++] = (byte)(scan_interval >> 8);
+            _data[idx++] = (byte)scan_window;
+            _data[idx++] = (byte)(scan_window >> 8);
+            _data[idx++] = (byte)active;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 2 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 2 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_set_scan_parameters_rsp_t res = new ble_msg_gap_set_scan_parameters_rsp_t();
@@ -2126,20 +2190,21 @@ namespace BleDriver {
         public ble_msg_gap_set_adv_parameters_rsp_t ble_cmd_gap_set_adv_parameters(int adv_interval_min, int adv_interval_max, int adv_channels)
         {
             log("ble_cmd_gap_set_adv_parameters_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 2 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 2 + 2 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_adv_parameters_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 2 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_adv_parameters_id;
             // data
-            m_tx[idx++] = (byte)adv_interval_min;
-            m_tx[idx++] = (byte)(adv_interval_min >> 8);
-            m_tx[idx++] = (byte)adv_interval_max;
-            m_tx[idx++] = (byte)(adv_interval_max >> 8);
-            m_tx[idx++] = (byte)adv_channels;
+            _data[idx++] = (byte)adv_interval_min;
+            _data[idx++] = (byte)(adv_interval_min >> 8);
+            _data[idx++] = (byte)adv_interval_max;
+            _data[idx++] = (byte)(adv_interval_max >> 8);
+            _data[idx++] = (byte)adv_channels;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 2 + 2 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 2 + 2 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_set_adv_parameters_rsp_t res = new ble_msg_gap_set_adv_parameters_rsp_t();
@@ -2150,21 +2215,22 @@ namespace BleDriver {
         public ble_msg_gap_set_adv_data_rsp_t ble_cmd_gap_set_adv_data(int set_scanrsp, byte[] adv_data)
         {
             log("ble_cmd_gap_set_adv_data_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + adv_data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + adv_data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_adv_data_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + adv_data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_adv_data_id;
             // data
-            m_tx[idx++] = (byte)set_scanrsp;
-            m_tx[idx++] = (byte)(adv_data.Length);
+            _data[idx++] = (byte)set_scanrsp;
+            _data[idx++] = (byte)(adv_data.Length);
             for(int i = 0; i < adv_data.Length; i++)
             {
-                m_tx[idx++] = adv_data[i];
+                _data[idx++] = adv_data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + adv_data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + adv_data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_set_adv_data_rsp_t res = new ble_msg_gap_set_adv_data_rsp_t();
@@ -2175,20 +2241,21 @@ namespace BleDriver {
         public ble_msg_gap_set_directed_connectable_mode_rsp_t ble_cmd_gap_set_directed_connectable_mode(bd_addr address, int addr_type)
         {
             log("ble_cmd_gap_set_directed_connectable_mode_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + address.Length + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_gap;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_directed_connectable_mode_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + address.Length + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_directed_connectable_mode_id;
             // data
             for(int i = 0; i < address.Length; i++)
             {
-                m_tx[idx++] = address.Address[i];
+                _data[idx++] = address.Address[i];
             }
-            m_tx[idx++] = (byte)addr_type;
+            _data[idx++] = (byte)addr_type;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + address.Length + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_gap_set_directed_connectable_mode_rsp_t res = new ble_msg_gap_set_directed_connectable_mode_rsp_t();
@@ -2199,18 +2266,19 @@ namespace BleDriver {
         public ble_msg_hardware_io_port_config_irq_rsp_t ble_cmd_hardware_io_port_config_irq(int port, int enable_bits, int falling_edge)
         {
             log("ble_cmd_hardware_io_port_config_irq_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_irq_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_irq_id;
             // data
-            m_tx[idx++] = (byte)port;
-            m_tx[idx++] = (byte)enable_bits;
-            m_tx[idx++] = (byte)falling_edge;
+            _data[idx++] = (byte)port;
+            _data[idx++] = (byte)enable_bits;
+            _data[idx++] = (byte)falling_edge;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_io_port_config_irq_rsp_t res = new ble_msg_hardware_io_port_config_irq_rsp_t();
@@ -2221,21 +2289,22 @@ namespace BleDriver {
         public ble_msg_hardware_set_soft_timer_rsp_t ble_cmd_hardware_set_soft_timer(int time, int handle, int single_shot)
         {
             log("ble_cmd_hardware_set_soft_timer_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 4 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 4 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_set_soft_timer_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 4 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_set_soft_timer_id;
             // data
-            m_tx[idx++] = (byte)time;
-            m_tx[idx++] = (byte)(time >> 8);
-            m_tx[idx++] = (byte)(time >> 16);
-            m_tx[idx++] = (byte)(time >> 24);
-            m_tx[idx++] = (byte)handle;
-            m_tx[idx++] = (byte)single_shot;
+            _data[idx++] = (byte)time;
+            _data[idx++] = (byte)(time >> 8);
+            _data[idx++] = (byte)(time >> 16);
+            _data[idx++] = (byte)(time >> 24);
+            _data[idx++] = (byte)handle;
+            _data[idx++] = (byte)single_shot;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 4 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 4 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_set_soft_timer_rsp_t res = new ble_msg_hardware_set_soft_timer_rsp_t();
@@ -2246,18 +2315,19 @@ namespace BleDriver {
         public ble_msg_hardware_adc_read_rsp_t ble_cmd_hardware_adc_read(int input, int decimation, int reference_selection)
         {
             log("ble_cmd_hardware_adc_read_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_adc_read_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_adc_read_id;
             // data
-            m_tx[idx++] = (byte)input;
-            m_tx[idx++] = (byte)decimation;
-            m_tx[idx++] = (byte)reference_selection;
+            _data[idx++] = (byte)input;
+            _data[idx++] = (byte)decimation;
+            _data[idx++] = (byte)reference_selection;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_adc_read_rsp_t res = new ble_msg_hardware_adc_read_rsp_t();
@@ -2268,17 +2338,18 @@ namespace BleDriver {
         public ble_msg_hardware_io_port_config_direction_rsp_t ble_cmd_hardware_io_port_config_direction(int port, int direction)
         {
             log("ble_cmd_hardware_io_port_config_direction_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_direction_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_direction_id;
             // data
-            m_tx[idx++] = (byte)port;
-            m_tx[idx++] = (byte)direction;
+            _data[idx++] = (byte)port;
+            _data[idx++] = (byte)direction;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_io_port_config_direction_rsp_t res = new ble_msg_hardware_io_port_config_direction_rsp_t();
@@ -2289,17 +2360,18 @@ namespace BleDriver {
         public ble_msg_hardware_io_port_config_function_rsp_t ble_cmd_hardware_io_port_config_function(int port, int function)
         {
             log("ble_cmd_hardware_io_port_config_function_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_function_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_function_id;
             // data
-            m_tx[idx++] = (byte)port;
-            m_tx[idx++] = (byte)function;
+            _data[idx++] = (byte)port;
+            _data[idx++] = (byte)function;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_io_port_config_function_rsp_t res = new ble_msg_hardware_io_port_config_function_rsp_t();
@@ -2310,18 +2382,19 @@ namespace BleDriver {
         public ble_msg_hardware_io_port_config_pull_rsp_t ble_cmd_hardware_io_port_config_pull(int port, int tristate_mask, int pull_up)
         {
             log("ble_cmd_hardware_io_port_config_pull_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_pull_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_config_pull_id;
             // data
-            m_tx[idx++] = (byte)port;
-            m_tx[idx++] = (byte)tristate_mask;
-            m_tx[idx++] = (byte)pull_up;
+            _data[idx++] = (byte)port;
+            _data[idx++] = (byte)tristate_mask;
+            _data[idx++] = (byte)pull_up;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_io_port_config_pull_rsp_t res = new ble_msg_hardware_io_port_config_pull_rsp_t();
@@ -2332,18 +2405,19 @@ namespace BleDriver {
         public ble_msg_hardware_io_port_write_rsp_t ble_cmd_hardware_io_port_write(int port, int mask, int data)
         {
             log("ble_cmd_hardware_io_port_write_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_write_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_write_id;
             // data
-            m_tx[idx++] = (byte)port;
-            m_tx[idx++] = (byte)mask;
-            m_tx[idx++] = (byte)data;
+            _data[idx++] = (byte)port;
+            _data[idx++] = (byte)mask;
+            _data[idx++] = (byte)data;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_io_port_write_rsp_t res = new ble_msg_hardware_io_port_write_rsp_t();
@@ -2354,17 +2428,18 @@ namespace BleDriver {
         public ble_msg_hardware_io_port_read_rsp_t ble_cmd_hardware_io_port_read(int port, int mask)
         {
             log("ble_cmd_hardware_io_port_read_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_read_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_io_port_read_id;
             // data
-            m_tx[idx++] = (byte)port;
-            m_tx[idx++] = (byte)mask;
+            _data[idx++] = (byte)port;
+            _data[idx++] = (byte)mask;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_io_port_read_rsp_t res = new ble_msg_hardware_io_port_read_rsp_t();
@@ -2377,21 +2452,22 @@ namespace BleDriver {
         public ble_msg_hardware_spi_config_rsp_t ble_cmd_hardware_spi_config(int channel, int polarity, int phase, int bit_order, int baud_e, int baud_m)
         {
             log("ble_cmd_hardware_spi_config_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_spi_config_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_spi_config_id;
             // data
-            m_tx[idx++] = (byte)channel;
-            m_tx[idx++] = (byte)polarity;
-            m_tx[idx++] = (byte)phase;
-            m_tx[idx++] = (byte)bit_order;
-            m_tx[idx++] = (byte)baud_e;
-            m_tx[idx++] = (byte)baud_m;
+            _data[idx++] = (byte)channel;
+            _data[idx++] = (byte)polarity;
+            _data[idx++] = (byte)phase;
+            _data[idx++] = (byte)bit_order;
+            _data[idx++] = (byte)baud_e;
+            _data[idx++] = (byte)baud_m;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_spi_config_rsp_t res = new ble_msg_hardware_spi_config_rsp_t();
@@ -2402,21 +2478,22 @@ namespace BleDriver {
         public ble_msg_hardware_spi_transfer_rsp_t ble_cmd_hardware_spi_transfer(int channel, byte[] data)
         {
             log("ble_cmd_hardware_spi_transfer_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_spi_transfer_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_spi_transfer_id;
             // data
-            m_tx[idx++] = (byte)channel;
-            m_tx[idx++] = (byte)(data.Length);
+            _data[idx++] = (byte)channel;
+            _data[idx++] = (byte)(data.Length);
             for(int i = 0; i < data.Length; i++)
             {
-                m_tx[idx++] = data[i];
+                _data[idx++] = data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_spi_transfer_rsp_t res = new ble_msg_hardware_spi_transfer_rsp_t();
@@ -2433,18 +2510,19 @@ namespace BleDriver {
         public ble_msg_hardware_i2c_read_rsp_t ble_cmd_hardware_i2c_read(int address, int stop, int length)
         {
             log("ble_cmd_hardware_i2c_read_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_i2c_read_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_i2c_read_id;
             // data
-            m_tx[idx++] = (byte)address;
-            m_tx[idx++] = (byte)stop;
-            m_tx[idx++] = (byte)length;
+            _data[idx++] = (byte)address;
+            _data[idx++] = (byte)stop;
+            _data[idx++] = (byte)length;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_i2c_read_rsp_t res = new ble_msg_hardware_i2c_read_rsp_t();
@@ -2460,22 +2538,23 @@ namespace BleDriver {
         public ble_msg_hardware_i2c_write_rsp_t ble_cmd_hardware_i2c_write(int address, int stop, byte[] data)
         {
             log("ble_cmd_hardware_i2c_write_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1 + data.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1 + data.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_i2c_write_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1 + data.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_i2c_write_id;
             // data
-            m_tx[idx++] = (byte)address;
-            m_tx[idx++] = (byte)stop;
-            m_tx[idx++] = (byte)(data.Length);
+            _data[idx++] = (byte)address;
+            _data[idx++] = (byte)stop;
+            _data[idx++] = (byte)(data.Length);
             for(int i = 0; i < data.Length; i++)
             {
-                m_tx[idx++] = data[i];
+                _data[idx++] = data[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + data.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + data.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_i2c_write_rsp_t res = new ble_msg_hardware_i2c_write_rsp_t();
@@ -2486,35 +2565,37 @@ namespace BleDriver {
         public void ble_cmd_hardware_set_txpower(int power)
         {
             log("ble_cmd_hardware_set_txpower_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_set_txpower_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_set_txpower_id;
             // data
-            m_tx[idx++] = (byte)power;
+            _data[idx++] = (byte)power;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
         }
 
         public ble_msg_hardware_timer_comparator_rsp_t ble_cmd_hardware_timer_comparator(int timer, int channel, int mode, int comparator_value)
         {
             log("ble_cmd_hardware_timer_comparator_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1 + 2];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1 + 2);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_hardware;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_hardware_timer_comparator_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_hardware;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_hardware_timer_comparator_id;
             // data
-            m_tx[idx++] = (byte)timer;
-            m_tx[idx++] = (byte)channel;
-            m_tx[idx++] = (byte)mode;
-            m_tx[idx++] = (byte)comparator_value;
-            m_tx[idx++] = (byte)(comparator_value >> 8);
+            _data[idx++] = (byte)timer;
+            _data[idx++] = (byte)channel;
+            _data[idx++] = (byte)mode;
+            _data[idx++] = (byte)comparator_value;
+            _data[idx++] = (byte)(comparator_value >> 8);
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + 2, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1 + 2, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_hardware_timer_comparator_rsp_t res = new ble_msg_hardware_timer_comparator_rsp_t();
@@ -2525,46 +2606,49 @@ namespace BleDriver {
         public void ble_cmd_test_phy_tx(int channel, int length, int type)
         {
             log("ble_cmd_test_phy_tx_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + 1 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_test;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_tx_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + 1 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_test;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_tx_id;
             // data
-            m_tx[idx++] = (byte)channel;
-            m_tx[idx++] = (byte)length;
-            m_tx[idx++] = (byte)type;
+            _data[idx++] = (byte)channel;
+            _data[idx++] = (byte)length;
+            _data[idx++] = (byte)type;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + 1 + 1, false);
         }
 
         public void ble_cmd_test_phy_rx(int channel)
         {
             log("ble_cmd_test_phy_rx_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_test;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_rx_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_test;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_rx_id;
             // data
-            m_tx[idx++] = (byte)channel;
+            _data[idx++] = (byte)channel;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1, false);
         }
 
         public ble_msg_test_phy_end_rsp_t ble_cmd_test_phy_end()
         {
             log("ble_cmd_test_phy_end_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_test;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_end_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_test;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_end_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_test_phy_end_rsp_t res = new ble_msg_test_phy_end_rsp_t();
@@ -2575,27 +2659,29 @@ namespace BleDriver {
         public void ble_cmd_test_phy_reset()
         {
             log("ble_cmd_test_phy_reset_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_test;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_reset_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_test;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_reset_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
         }
 
         public ble_msg_test_get_channel_map_rsp_t ble_cmd_test_get_channel_map()
         {
             log("ble_cmd_test_get_channel_map_id");
+            byte[] _data = new byte[SIZE_HEADER + 0];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_test;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_test_get_channel_map_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0);
+            _data[idx++] = (byte)ble_classes.ble_cls_test;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_test_get_channel_map_id;
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_test_get_channel_map_rsp_t res = new ble_msg_test_get_channel_map_rsp_t();
@@ -2610,20 +2696,21 @@ namespace BleDriver {
         public ble_msg_test_debug_rsp_t ble_cmd_test_debug(byte[] input)
         {
             log("ble_cmd_test_debug_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + input.Length];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            m_tx[idx++] = (byte)(0 + 1 + input.Length);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_test;
-            m_tx[idx++] = (byte)ble_command_ids.ble_cmd_test_debug_id;
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1 + input.Length);
+            _data[idx++] = (byte)ble_classes.ble_cls_test;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_test_debug_id;
             // data
-            m_tx[idx++] = (byte)(input.Length);
+            _data[idx++] = (byte)(input.Length);
             for(int i = 0; i < input.Length; i++)
             {
-                m_tx[idx++] = input[i];
+                _data[idx++] = input[i];
             }
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + 0 + 1 + input.Length, false);
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + 0 + 1 + input.Length, false);
             // parse answer
             idx = SIZE_HEADER;
             ble_msg_test_debug_rsp_t res = new ble_msg_test_debug_rsp_t();
@@ -2635,7 +2722,7 @@ namespace BleDriver {
             return res;
         }
 
-        public class ble_msg_system_boot_evt_t
+        public class ble_msg_system_boot_evt_t : ble_event
         {
             public int major;
             public int minor;
@@ -2646,36 +2733,36 @@ namespace BleDriver {
             public int hw;
         }
 
-        public class ble_msg_system_debug_evt_t
+        public class ble_msg_system_debug_evt_t : ble_event
         {
             public byte[] data;
         }
 
-        public class ble_msg_system_endpoint_watermark_rx_evt_t
+        public class ble_msg_system_endpoint_watermark_rx_evt_t : ble_event
         {
             public int endpoint;
             public int data;
         }
 
-        public class ble_msg_system_endpoint_watermark_tx_evt_t
+        public class ble_msg_system_endpoint_watermark_tx_evt_t : ble_event
         {
             public int endpoint;
             public int data;
         }
 
-        public class ble_msg_system_script_failure_evt_t
+        public class ble_msg_system_script_failure_evt_t : ble_event
         {
             public int address;
             public int reason;
         }
 
-        public class ble_msg_flash_ps_key_evt_t
+        public class ble_msg_flash_ps_key_evt_t : ble_event
         {
             public int key;
             public byte[] value;
         }
 
-        public class ble_msg_attributes_value_evt_t
+        public class ble_msg_attributes_value_evt_t : ble_event
         {
             public int connection;
             public int reason;
@@ -2684,7 +2771,7 @@ namespace BleDriver {
             public byte[] value;
         }
 
-        public class ble_msg_attributes_user_read_request_evt_t
+        public class ble_msg_attributes_user_read_request_evt_t : ble_event
         {
             public int connection;
             public int handle;
@@ -2692,13 +2779,13 @@ namespace BleDriver {
             public int maxsize;
         }
 
-        public class ble_msg_attributes_status_evt_t
+        public class ble_msg_attributes_status_evt_t : ble_event
         {
             public int handle;
             public int flags;
         }
 
-        public class ble_msg_connection_status_evt_t
+        public class ble_msg_connection_status_evt_t : ble_event
         {
             public int connection;
             public int flags;
@@ -2710,7 +2797,7 @@ namespace BleDriver {
             public int bonding;
         }
 
-        public class ble_msg_connection_version_ind_evt_t
+        public class ble_msg_connection_version_ind_evt_t : ble_event
         {
             public int connection;
             public int vers_nr;
@@ -2718,38 +2805,38 @@ namespace BleDriver {
             public int sub_vers_nr;
         }
 
-        public class ble_msg_connection_feature_ind_evt_t
+        public class ble_msg_connection_feature_ind_evt_t : ble_event
         {
             public int connection;
             public byte[] features;
         }
 
-        public class ble_msg_connection_raw_rx_evt_t
+        public class ble_msg_connection_raw_rx_evt_t : ble_event
         {
             public int connection;
             public byte[] data;
         }
 
-        public class ble_msg_connection_disconnected_evt_t
+        public class ble_msg_connection_disconnected_evt_t : ble_event
         {
             public int connection;
             public int reason;
         }
 
-        public class ble_msg_attclient_indicated_evt_t
+        public class ble_msg_attclient_indicated_evt_t : ble_event
         {
             public int connection;
             public int attrhandle;
         }
 
-        public class ble_msg_attclient_procedure_completed_evt_t
+        public class ble_msg_attclient_procedure_completed_evt_t : ble_event
         {
             public int connection;
             public int result;
             public int chrhandle;
         }
 
-        public class ble_msg_attclient_group_found_evt_t
+        public class ble_msg_attclient_group_found_evt_t : ble_event
         {
             public int connection;
             public int start;
@@ -2757,7 +2844,7 @@ namespace BleDriver {
             public byte[] uuid;
         }
 
-        public class ble_msg_attclient_attribute_found_evt_t
+        public class ble_msg_attclient_attribute_found_evt_t : ble_event
         {
             public int connection;
             public int chrdecl;
@@ -2766,14 +2853,14 @@ namespace BleDriver {
             public byte[] uuid;
         }
 
-        public class ble_msg_attclient_find_information_found_evt_t
+        public class ble_msg_attclient_find_information_found_evt_t : ble_event
         {
             public int connection;
             public int chrhandle;
             public byte[] uuid;
         }
 
-        public class ble_msg_attclient_attribute_value_evt_t
+        public class ble_msg_attclient_attribute_value_evt_t : ble_event
         {
             public int connection;
             public int atthandle;
@@ -2781,37 +2868,37 @@ namespace BleDriver {
             public byte[] value;
         }
 
-        public class ble_msg_attclient_read_multiple_response_evt_t
+        public class ble_msg_attclient_read_multiple_response_evt_t : ble_event
         {
             public int connection;
             public byte[] handles;
         }
 
-        public class ble_msg_sm_smp_data_evt_t
+        public class ble_msg_sm_smp_data_evt_t : ble_event
         {
             public int handle;
             public int packet;
             public byte[] data;
         }
 
-        public class ble_msg_sm_bonding_fail_evt_t
+        public class ble_msg_sm_bonding_fail_evt_t : ble_event
         {
             public int handle;
             public int result;
         }
 
-        public class ble_msg_sm_passkey_display_evt_t
+        public class ble_msg_sm_passkey_display_evt_t : ble_event
         {
             public int handle;
             public int passkey;
         }
 
-        public class ble_msg_sm_passkey_request_evt_t
+        public class ble_msg_sm_passkey_request_evt_t : ble_event
         {
             public int handle;
         }
 
-        public class ble_msg_sm_bond_status_evt_t
+        public class ble_msg_sm_bond_status_evt_t : ble_event
         {
             public int bond;
             public int keysize;
@@ -2819,7 +2906,7 @@ namespace BleDriver {
             public int keys;
         }
 
-        public class ble_msg_gap_scan_response_evt_t
+        public class ble_msg_gap_scan_response_evt_t : ble_event
         {
             public int rssi;
             public int packet_type;
@@ -2829,13 +2916,13 @@ namespace BleDriver {
             public byte[] data;
         }
 
-        public class ble_msg_gap_mode_changed_evt_t
+        public class ble_msg_gap_mode_changed_evt_t : ble_event
         {
             public int discover;
             public int connect;
         }
 
-        public class ble_msg_hardware_io_port_status_evt_t
+        public class ble_msg_hardware_io_port_status_evt_t : ble_event
         {
             public int timestamp;
             public int port;
@@ -2843,12 +2930,12 @@ namespace BleDriver {
             public int state;
         }
 
-        public class ble_msg_hardware_soft_timer_evt_t
+        public class ble_msg_hardware_soft_timer_evt_t : ble_event
         {
             public int handle;
         }
 
-        public class ble_msg_hardware_adc_result_evt_t
+        public class ble_msg_hardware_adc_result_evt_t : ble_event
         {
             public int input;
             public int value;
@@ -3009,9 +3096,10 @@ namespace BleDriver {
             log("ble_evt_hardware_adc_result");
         }
 
-        protected void handleEvent(byte[] buffer)
+        protected ble_event parseEvent(byte[] buffer)
         {
             int idx = SIZE_HEADER;
+            ble_event res = null;
             int _length = ((buffer[0] & 0x7F) << 8) | buffer[1];
             switch(buffer[2])
             {
@@ -3029,7 +3117,8 @@ namespace BleDriver {
                                 s.protocol_version = buffer[idx++];
                                 s.hw = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_system_boot(s);
+                                //ble_evt_system_boot(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_system_debug_id:
@@ -3041,7 +3130,8 @@ namespace BleDriver {
                                     s.data[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_system_debug(s);
+                                //ble_evt_system_debug(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_system_endpoint_watermark_rx_id:
@@ -3050,7 +3140,8 @@ namespace BleDriver {
                                 s.endpoint = buffer[idx++];
                                 s.data = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_system_endpoint_watermark_rx(s);
+                                //ble_evt_system_endpoint_watermark_rx(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_system_endpoint_watermark_tx_id:
@@ -3059,7 +3150,8 @@ namespace BleDriver {
                                 s.endpoint = buffer[idx++];
                                 s.data = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_system_endpoint_watermark_tx(s);
+                                //ble_evt_system_endpoint_watermark_tx(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_system_script_failure_id:
@@ -3068,7 +3160,8 @@ namespace BleDriver {
                                 s.address = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 s.reason = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_system_script_failure(s);
+                                //ble_evt_system_script_failure(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3088,7 +3181,8 @@ namespace BleDriver {
                                     s.value[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_flash_ps_key(s);
+                                //ble_evt_flash_ps_key(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3111,7 +3205,8 @@ namespace BleDriver {
                                     s.value[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attributes_value(s);
+                                //ble_evt_attributes_value(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attributes_user_read_request_id:
@@ -3122,7 +3217,8 @@ namespace BleDriver {
                                 s.offset = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 s.maxsize = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attributes_user_read_request(s);
+                                //ble_evt_attributes_user_read_request(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attributes_status_id:
@@ -3131,7 +3227,8 @@ namespace BleDriver {
                                 s.handle = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 s.flags = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attributes_status(s);
+                                //ble_evt_attributes_status(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3157,7 +3254,8 @@ namespace BleDriver {
                                 s.latency = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 s.bonding = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_connection_status(s);
+                                //ble_evt_connection_status(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_connection_version_ind_id:
@@ -3168,7 +3266,8 @@ namespace BleDriver {
                                 s.comp_id = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 s.sub_vers_nr = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_connection_version_ind(s);
+                                //ble_evt_connection_version_ind(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_connection_feature_ind_id:
@@ -3181,7 +3280,8 @@ namespace BleDriver {
                                     s.features[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_connection_feature_ind(s);
+                                //ble_evt_connection_feature_ind(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_connection_raw_rx_id:
@@ -3194,7 +3294,8 @@ namespace BleDriver {
                                     s.data[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_connection_raw_rx(s);
+                                //ble_evt_connection_raw_rx(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_connection_disconnected_id:
@@ -3203,7 +3304,8 @@ namespace BleDriver {
                                 s.connection = buffer[idx++];
                                 s.reason = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_connection_disconnected(s);
+                                //ble_evt_connection_disconnected(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3219,7 +3321,8 @@ namespace BleDriver {
                                 s.connection = buffer[idx++];
                                 s.attrhandle = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attclient_indicated(s);
+                                //ble_evt_attclient_indicated(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attclient_procedure_completed_id:
@@ -3229,7 +3332,8 @@ namespace BleDriver {
                                 s.result = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 s.chrhandle = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attclient_procedure_completed(s);
+                                //ble_evt_attclient_procedure_completed(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attclient_group_found_id:
@@ -3244,7 +3348,8 @@ namespace BleDriver {
                                     s.uuid[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attclient_group_found(s);
+                                //ble_evt_attclient_group_found(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attclient_attribute_found_id:
@@ -3260,7 +3365,8 @@ namespace BleDriver {
                                     s.uuid[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attclient_attribute_found(s);
+                                //ble_evt_attclient_attribute_found(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attclient_find_information_found_id:
@@ -3274,7 +3380,8 @@ namespace BleDriver {
                                     s.uuid[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attclient_find_information_found(s);
+                                //ble_evt_attclient_find_information_found(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attclient_attribute_value_id:
@@ -3289,7 +3396,8 @@ namespace BleDriver {
                                     s.value[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attclient_attribute_value(s);
+                                //ble_evt_attclient_attribute_value(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_attclient_read_multiple_response_id:
@@ -3302,7 +3410,8 @@ namespace BleDriver {
                                     s.handles[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_attclient_read_multiple_response(s);
+                                //ble_evt_attclient_read_multiple_response(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3323,7 +3432,8 @@ namespace BleDriver {
                                     s.data[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_sm_smp_data(s);
+                                //ble_evt_sm_smp_data(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_sm_bonding_fail_id:
@@ -3332,7 +3442,8 @@ namespace BleDriver {
                                 s.handle = buffer[idx++];
                                 s.result = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_sm_bonding_fail(s);
+                                //ble_evt_sm_bonding_fail(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_sm_passkey_display_id:
@@ -3341,7 +3452,8 @@ namespace BleDriver {
                                 s.handle = buffer[idx++];
                                 s.passkey = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_sm_passkey_display(s);
+                                //ble_evt_sm_passkey_display(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_sm_passkey_request_id:
@@ -3349,7 +3461,8 @@ namespace BleDriver {
                                 ble_msg_sm_passkey_request_evt_t s = new ble_msg_sm_passkey_request_evt_t();
                                 s.handle = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_sm_passkey_request(s);
+                                //ble_evt_sm_passkey_request(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_sm_bond_status_id:
@@ -3360,7 +3473,8 @@ namespace BleDriver {
                                 s.mitm = buffer[idx++];
                                 s.keys = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_sm_bond_status(s);
+                                //ble_evt_sm_bond_status(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3388,7 +3502,8 @@ namespace BleDriver {
                                     s.data[i] = buffer[idx++];
                                 }
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_gap_scan_response(s);
+                                //ble_evt_gap_scan_response(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_gap_mode_changed_id:
@@ -3397,7 +3512,8 @@ namespace BleDriver {
                                 s.discover = buffer[idx++];
                                 s.connect = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_gap_mode_changed(s);
+                                //ble_evt_gap_mode_changed(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3415,7 +3531,8 @@ namespace BleDriver {
                                 s.irq = buffer[idx++];
                                 s.state = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_hardware_io_port_status(s);
+                                //ble_evt_hardware_io_port_status(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_hardware_soft_timer_id:
@@ -3423,7 +3540,8 @@ namespace BleDriver {
                                 ble_msg_hardware_soft_timer_evt_t s = new ble_msg_hardware_soft_timer_evt_t();
                                 s.handle = buffer[idx++];
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_hardware_soft_timer(s);
+                                //ble_evt_hardware_soft_timer(s);
+                                res = s;
                             }
                             break;
                         case (byte)ble_event_ids.ble_evt_hardware_adc_result_id:
@@ -3432,7 +3550,8 @@ namespace BleDriver {
                                 s.input = buffer[idx++];
                                 s.value = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
                                 check(idx, SIZE_HEADER + _length);
-                                ble_evt_hardware_adc_result(s);
+                                //ble_evt_hardware_adc_result(s);
+                                res = s;
                             }
                             break;
                         default:
@@ -3449,6 +3568,7 @@ namespace BleDriver {
                 default:
                     throw new BLE112Exception(string.Format("Unknown class 0x{0}", buffer[2].ToString("X2")));
             }
+            return res;
         }
     }
 }

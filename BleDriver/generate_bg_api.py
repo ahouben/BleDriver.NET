@@ -81,7 +81,7 @@ class BgApiCommandEvent(object):
         if not self.returns and not self.isEvent:
             return ''
         s = '''
-        public class %(struct)s
+        public class %(struct)s : ble_event
         {%(body)s
         }
 ''' % { 'struct' : (self.isEvent and self.struct()) or self.return_struct(), 'body' : self.return_struct_declaration_body() }
@@ -156,12 +156,13 @@ class BgApiCommandEvent(object):
     def dumpBody(self):
         s = '''
             log("%(id)s");
+            byte[] _data = new byte[SIZE_HEADER + %(data_len)s];
             int idx = 0;
             // header
-            m_tx[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_%(msg_type)s|0x0;
-            m_tx[idx++] = (byte)(%(data_len)s);
-            m_tx[idx++] = (byte)ble_classes.ble_cls_%(class)s;
-            m_tx[idx++] = (byte)ble_command_ids.%(id)s;''' % { 'msg_type' : 'cmd', 'data_len' : self.cmdLength(), 'class' : self.upper.name, 'name' : self.name, 'id' : self.id() }
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_%(msg_type)s|0x0;
+            _data[idx++] = (byte)(%(data_len)s);
+            _data[idx++] = (byte)ble_classes.ble_cls_%(class)s;
+            _data[idx++] = (byte)ble_command_ids.%(id)s;''' % { 'msg_type' : 'cmd', 'data_len' : self.cmdLength(), 'class' : self.upper.name, 'name' : self.name, 'id' : self.id() }
         idx = 4
         if self.params:
             s += '''
@@ -169,33 +170,33 @@ class BgApiCommandEvent(object):
             for p in self.params:
                 if typeMap[p.type][1] == 1:
                     s += '''
-            m_tx[idx++] = (byte)%(name)s;''' % { 'name' : p.name }
+            _data[idx++] = (byte)%(name)s;''' % { 'name' : p.name }
                 elif typeMap[p.type][1] == 2:
                     s += '''
-            m_tx[idx++] = (byte)%(name)s;
-            m_tx[idx++] = (byte)(%(name)s >> 8);''' % { 'name' : p.name }
+            _data[idx++] = (byte)%(name)s;
+            _data[idx++] = (byte)(%(name)s >> 8);''' % { 'name' : p.name }
                 elif typeMap[p.type][1] == 4:
                     s += '''
-            m_tx[idx++] = (byte)%(name)s;
-            m_tx[idx++] = (byte)(%(name)s >> 8);
-            m_tx[idx++] = (byte)(%(name)s >> 16);
-            m_tx[idx++] = (byte)(%(name)s >> 24);''' % { 'name' : p.name }
+            _data[idx++] = (byte)%(name)s;
+            _data[idx++] = (byte)(%(name)s >> 8);
+            _data[idx++] = (byte)(%(name)s >> 16);
+            _data[idx++] = (byte)(%(name)s >> 24);''' % { 'name' : p.name }
                 elif typeMap[p.type][0] == 'byte[]':
                     s += '''
-            m_tx[idx++] = (byte)(%(name)s.Length);
+            _data[idx++] = (byte)(%(name)s.Length);
             for(int i = 0; i < %(name)s.Length; i++)
             {
-                m_tx[idx++] = %(name)s[i];
+                _data[idx++] = %(name)s[i];
             }''' % { 'name' : p.name }
                 elif typeMap[p.type][0] == 'bd_addr':
                     s += '''
             for(int i = 0; i < %(name)s.Length; i++)
             {
-                m_tx[idx++] = %(name)s.Address[i];
+                _data[idx++] = %(name)s.Address[i];
             }''' % { 'name' : p.name }
         s += '''
             // send
-            byte[] answer = Send(m_tx, 0, SIZE_HEADER /* header */ + %s, %s);''' % (self.cmdLength(), self.no_return)
+            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + %s, %s);''' % (self.cmdLength(), self.no_return)
         if self.returns:
             s += '''
             // parse answer
@@ -347,9 +348,10 @@ namespace BleDriver {
 ''')        
     def dumpEventHandler(self, f):
         f.write('''
-        protected void handleEvent(byte[] buffer)
+        protected ble_event parseEvent(byte[] buffer)
         {
             int idx = SIZE_HEADER;
+            ble_event res = null;
             int _length = ((buffer[0] & 0x7F) << 8) | buffer[1];
             switch(buffer[2])
             {''')
@@ -364,7 +366,8 @@ namespace BleDriver {
                             {
                                 %(struct)s s = new %(struct)s();%(body)s
                                 check(idx, SIZE_HEADER + _length);
-                                %(call)s(s);
+                                //%(call)s(s);
+                                res = s;
                             }
                             break;''' % { 'id' : evt.id(), 'struct' : evt.struct(), 'body' : evt.dumpEventBody(), 'call' : evt.method_name() })
             f.write('''
@@ -376,6 +379,7 @@ namespace BleDriver {
                 default:
                     throw new BLE112Exception(string.Format("Unknown class 0x{0}", buffer[2].ToString("X2")));
             }
+            return res;
         }''')
     def dumpCommandsEnum(self, f):
         f.write('''
@@ -430,4 +434,4 @@ def bg_api(in_xml, out_cs):
     bgapi.dump(out_cs)
 
 if __name__ == '__main__':
-    bg_api('../../BlueGiga/ble-1.1.0-55/ble-1.1.0-55/ble/api/bleapi.xml', './BLE112.g.cs')
+    bg_api('../../../BlueGiga/ble-1.1.0-55/ble-1.1.0-55/ble/api/bleapi.xml', './BLE112.g.cs')
