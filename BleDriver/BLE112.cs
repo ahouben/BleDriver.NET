@@ -209,7 +209,18 @@ namespace BleDriver
             // register for data received events
             m_serialDataReceivedEventHandler = new SerialDataReceivedEventHandler(m_serialPort_DataReceived);
             m_serialPort.DataReceived += m_serialDataReceivedEventHandler;
-            m_serialPort.Open();
+            while (true)
+            {
+                try
+                {
+                    m_serialPort.Open();
+                    break;
+                }
+                catch (Exception ee)
+                {
+                    Thread.Sleep(100);
+                }
+            }
             m_stream = m_serialPort.BaseStream;
             m_rxOffset = 0;
         }
