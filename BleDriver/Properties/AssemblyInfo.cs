@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("C# BLE(D)112 driver")]
-[assembly: AssemblyDescription("An auto-generated C# driver interface to a BLE112 or BLED112 device")]
+[assembly: AssemblyDescription("An auto-generated C# bgapi driver interface")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Greenliff AG")]
 [assembly: AssemblyProduct("C# BLE(D)112 driver")]

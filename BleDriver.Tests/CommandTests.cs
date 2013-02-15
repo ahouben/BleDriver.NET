@@ -23,9 +23,9 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 
-using BleDriver;
+using BgApiDriver;
 
-namespace BleDriver.Tests
+namespace BgApiDriver.Tests
 {
     /// <summary>
     /// Basic command tests.
@@ -33,11 +33,11 @@ namespace BleDriver.Tests
     [TestClass]
     public class CommandTests
     {
-        class MyBLE112 : BLE112
+        class MyBgApi : BgApi
         {
             public int NumTimerCalls { get; set; }
 
-            public MyBLE112(string comPort) : base(comPort) { }
+            public MyBgApi(string comPort) : base(comPort) { }
 
             protected override void  ble_evt_hardware_soft_timer(ble_msg_hardware_soft_timer_evt_t arg)
             {
@@ -45,14 +45,14 @@ namespace BleDriver.Tests
             }
         }
         
-        MyBLE112 dongle;
+        MyBgApi dongle;
 
         public CommandTests() { }
 
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            dongle = new MyBLE112("COM23");
+            dongle = new MyBgApi("COM3");
             dongle.Open();
         }
         

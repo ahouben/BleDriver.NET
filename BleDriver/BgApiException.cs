@@ -21,10 +21,10 @@
  */
 using System;
 
-namespace BleDriver
+namespace BgApiDriver
 {
-    public class BLE112Exception : Exception
+    public class BgApiException : Exception
     {
-        public BLE112Exception(string msg) : base(msg) { }
+        public BgApiException(string msg) : base(msg) { }
     }
 }

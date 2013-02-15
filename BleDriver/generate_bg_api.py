@@ -81,10 +81,12 @@ class BgApiCommandEvent(object):
         if not self.returns and not self.isEvent:
             return ''
         s = '''
-        public class %(struct)s : ble_event
+        public class %(struct)s : BgApi%(type)s
         {%(body)s
         }
-''' % { 'struct' : (self.isEvent and self.struct()) or self.return_struct(), 'body' : self.return_struct_declaration_body() }
+''' % { 'struct' : (self.isEvent and self.struct()) or self.return_struct(),
+        'body' : self.return_struct_declaration_body(),
+        'type' : (self.isEvent and 'Event') or 'Response' }
         return s
     def return_struct_declaration_body(self):
         s = ''
@@ -120,32 +122,32 @@ class BgApiCommandEvent(object):
                 size += ' + 1 + %s.Length' % p.name
         return size
     
-    def dumpEventBody(self):
+    def dumpEventResponseBody(self):
         s = ''
-        for p in self.params:
+        for p in (self.isEvent and self.params) or self.returns:
             if typeMap[p.type][1] == 1:
                 s += '''
-                                s.%(name)s = buffer[idx++];''' % { 'name' : p.name }
+                                    s.%(name)s = buffer[idx++];''' % { 'name' : p.name }
             elif typeMap[p.type][1] == 2:
                 s += '''
-                                s.%(name)s = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;''' % { 'name' : p.name }
+                                    s.%(name)s = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;''' % { 'name' : p.name }
             elif typeMap[p.type][1] == 4:
                 s += '''
-                                s.%(name)s = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;''' % { 'name' : p.name }
+                                    s.%(name)s = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;''' % { 'name' : p.name }
             elif typeMap[p.type][0] == 'byte[]':
                 s += '''
-                                s.%(name)s = new byte[buffer[idx++]];
-                                for(int i = 0; i < s.%(name)s.Length; i++)
-                                {
-                                    s.%(name)s[i] = buffer[idx++];
-                                }''' % { 'name' : p.name }
+                                    s.%(name)s = new byte[buffer[idx++]];
+                                    for(int i = 0; i < s.%(name)s.Length; i++)
+                                    {
+                                        s.%(name)s[i] = buffer[idx++];
+                                    }''' % { 'name' : p.name }
             elif typeMap[p.type][0] == 'bd_addr':
                 s += '''
-                                s.%(name)s = new bd_addr();
-                                for(int i = 0; i < s.%(name)s.Length; i++)
-                                {
-                                    s.%(name)s.Address[i] = buffer[idx++];
-                                }''' % { 'name' : p.name }
+                                    s.%(name)s = new bd_addr();
+                                    for(int i = 0; i < s.%(name)s.Length; i++)
+                                    {
+                                        s.%(name)s.Address[i] = buffer[idx++];
+                                    }''' % { 'name' : p.name }
         return s
     
     def method_name(self):
@@ -196,38 +198,10 @@ class BgApiCommandEvent(object):
             }''' % { 'name' : p.name }
         s += '''
             // send
-            byte[] answer = Send(_data, 0, SIZE_HEADER /* header */ + %s, %s);''' % (self.cmdLength(), self.no_return)
+            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, %s);''' % (self.no_return)
         if self.returns:
             s += '''
-            // parse answer
-            idx = SIZE_HEADER;
-            %(struct)s res = new %(struct)s();''' % { 'struct' : self.return_struct() }
-            for p in self.returns:
-                if typeMap[p.type][1] == 1:
-                    s += '''
-            res.%(name)s = answer[idx++];''' % { 'name' : p.name }
-                elif typeMap[p.type][1] == 2:
-                    s += '''
-            res.%(name)s = answer[idx+0] | (answer[idx+1] << 8); idx+=2;''' % { 'name' : p.name }
-                elif typeMap[p.type][1] == 4:
-                    s += '''
-            res.%(name)s = answer[idx+0] | (answer[idx+1] << 8) | (answer[idx+2] << 16) | (answer[idx+3] << 24); idx+=4;''' % { 'name' : p.name }
-                elif typeMap[p.type][0] == 'byte[]':
-                    s += '''
-            res.%(name)s = new byte[answer[idx++]];
-            for(int i = 0; i < res.%(name)s.Length; i++)
-            {
-                res.%(name)s[i] = answer[idx++];
-            }''' % { 'name' : p.name }
-                elif typeMap[p.type][0] == 'bd_addr':
-                    s += '''
-            res.%(name)s = new bd_addr();
-            for(int i = 0; i < res.%(name)s.Length; i++)
-            {
-                res.%(name)s.Address[i] = answer[idx++];
-            }''' % { 'name' : p.name }
-            s += '''
-            return res;'''
+            return (%(struct)s)response;''' % { 'struct' : self.return_struct() }
         return s
     
     def dumpInParams(self):
@@ -306,8 +280,8 @@ class BgApi(object):
 // Auto-generated, do not modify
 using System;
 
-namespace BleDriver {
-    public partial class BLE112 {
+namespace BgApiDriver {
+    public partial class BgApi {
 ''')
         self.dumpClassEnum(f)
         self.dumpCommandsEnum(f)
@@ -348,37 +322,53 @@ namespace BleDriver {
 ''')        
     def dumpEventHandler(self, f):
         f.write('''
-        protected ble_event parseEvent(byte[] buffer)
+        protected BgApiEventResponse parseEventResponse(BgApiEventResponse received)
         {
             int idx = SIZE_HEADER;
-            ble_event res = null;
-            int _length = ((buffer[0] & 0x7F) << 8) | buffer[1];
-            switch(buffer[2])
-            {''')
-        for cls in self.classes:
+            BgApiEventResponse res = null;
+            int _length = received.Length;
+            byte[] buffer = received.Data;
+''')
+        for isEvent in [True, False]:
             f.write('''
-                case (byte)ble_classes.ble_cls_%(class)s:
-                    switch(buffer[3])
-                    {''' % { 'class' : cls.name })
-            for evt in cls.events:
+            %(else)sif(%(not)sreceived.IsEvent)
+            {
+                switch(received.Class)
+                {''' % { 'else' : (not isEvent and 'else ') or '',
+                         'not' : (not isEvent and '!') or '' })
+            for cls in self.classes:
                 f.write('''
-                        case (byte)ble_event_ids.%(id)s:
-                            {
-                                %(struct)s s = new %(struct)s();%(body)s
-                                check(idx, SIZE_HEADER + _length);
-                                //%(call)s(s);
-                                res = s;
-                            }
-                            break;''' % { 'id' : evt.id(), 'struct' : evt.struct(), 'body' : evt.dumpEventBody(), 'call' : evt.method_name() })
+                    case (byte)ble_classes.ble_cls_%(class)s:
+                        switch(received.Id)
+                        {''' % { 'class' : cls.name })
+                for evtRsp in (isEvent and cls.events) or (not isEvent and cls.commands) or []:
+                    if not isEvent and not evtRsp.returns:
+                        continue
+                    f.write('''
+                            case (byte)ble_%(type)s_ids.%(id)s:
+                                {
+                                    %(struct)s s = new %(struct)s();%(body)s
+                                    check(idx, SIZE_HEADER + _length);
+                                    //%(call)s(s);
+                                    res = s;
+                                }
+                                break;''' % { 'type' : (isEvent and 'event') or 'command',
+                                              'id' : evtRsp.id(),
+                                              'struct' : evtRsp.struct(),
+                                              'body' : evtRsp.dumpEventResponseBody(),
+                                              'call' : evtRsp.method_name() })
+                f.write('''
+                            default:
+                                throw new BgApiException(string.Format("Unknown %(type)s id 0x{0}", buffer[3].ToString("X2")));
+                        }
+                        break;''' % { 'type' : (isEvent and 'event') or 'response' })
             f.write('''
-                        default:
-                            throw new BLE112Exception(string.Format("Unknown event id 0x{0}", buffer[3].ToString("X2")));
-                    }
-                    break;''')
+                    default:
+                        throw new BgApiException(string.Format("Unknown class 0x{0}", buffer[2].ToString("X2")));
+                }
+            }''')
         f.write('''
-                default:
-                    throw new BLE112Exception(string.Format("Unknown class 0x{0}", buffer[2].ToString("X2")));
-            }
+            res.Data = received.Data;
             return res;
         }''')
     def dumpCommandsEnum(self, f):
@@ -430,8 +420,7 @@ def bg_api(in_xml, out_cs):
     root = xml.dom.minidom.parse(in_xml).documentElement
     bgapi = BgApi()
     bgapi.parse(root)
-    # FIXME dump
     bgapi.dump(out_cs)
 
 if __name__ == '__main__':
-    bg_api('../../../BlueGiga/ble-1.1.0-55/ble-1.1.0-55/ble/api/bleapi.xml', './BLE112.g.cs')
+    bg_api('./ble-1.1.0-55/bleapi.xml', './BgApi.g.cs')

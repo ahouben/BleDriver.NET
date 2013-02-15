@@ -2,7 +2,7 @@
 
 namespace BleDriver
 {
-    public class ble_event
+    public class BleEventResponse
     {
 
     }

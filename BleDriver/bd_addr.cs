@@ -21,7 +21,7 @@
  */
 using System;
 
-namespace BleDriver
+namespace BgApiDriver
 {
     public class bd_addr
     {
