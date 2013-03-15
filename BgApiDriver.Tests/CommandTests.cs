@@ -39,7 +39,7 @@ namespace BgApiDriver.Tests
 
             public MyBgApi(string comPort) : base(comPort) { }
 
-            protected override void  ble_evt_hardware_soft_timer(ble_msg_hardware_soft_timer_evt_t arg)
+            protected override void ble_evt_hardware_soft_timer(ble_msg_hardware_soft_timer_evt_t arg)
             {
                 NumTimerCalls++;
             }
@@ -76,9 +76,11 @@ namespace BgApiDriver.Tests
         [TestMethod]
         public void TimerTest()
         {
+            // enable timer
             var rsp = dongle.ble_cmd_hardware_set_soft_timer(35000 /* about every second */, 1, 0 /* periodic */);
             Assert.AreEqual(0, rsp.result);
             Thread.Sleep(5000);
+            // disable timer
             var rsp2 = dongle.ble_cmd_hardware_set_soft_timer(0, 1, 0);
             Assert.AreEqual(0, rsp2.result);
             Assert.IsTrue(dongle.NumTimerCalls >= 4, string.Format("Expected at least 4 timer callbacks, got {0}", dongle.NumTimerCalls));

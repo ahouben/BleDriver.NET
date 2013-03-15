@@ -49,7 +49,7 @@
     <Compile Include="CommandTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BleDriver\BleDriver.csproj">
+    <ProjectReference Include="..\BgApiDriver\BgApiDriver.csproj">
       <Project>{F7BBFFEF-ABA1-4650-9975-BF24A9FDB34B}</Project>
       <Name>BleDriver</Name>
     </ProjectReference>

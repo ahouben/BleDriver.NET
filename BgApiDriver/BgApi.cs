@@ -184,9 +184,10 @@ namespace BgApiDriver
             {
                 doOpen();
                 // start with a well known device state
-                ble_cmd_system_reset(0);
-                Close();
-                doOpen();
+                // FIXME: the following doesn't seem to work yet
+                //ble_cmd_system_reset(0);
+                //Close();
+                //doOpen();
 
                 Info = ble_cmd_system_get_info();
                 log(string.Format("Build: {0}, protocol version: {1}, hardware: {2}", Info.build, Info.protocol_version,
@@ -201,20 +202,7 @@ namespace BgApiDriver
             m_serialDataReceivedEventHandler = new SerialDataReceivedEventHandler(m_serialPort_DataReceived);
             m_serialPort.DataReceived += m_serialDataReceivedEventHandler;
 
-            int NUM_ATTEMPTS = 5;
-            for(int i = 0; i < NUM_ATTEMPTS; i++)
-            {
-                try
-                {
-                    m_serialPort.Open();
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    log(ex.ToString());
-                    Thread.Sleep(500);
-                }
-            }
+            m_serialPort.Open();
             m_stream = m_serialPort.BaseStream;
             m_rxOffset = 0;
         }

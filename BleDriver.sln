@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BleDriver", "BleDriver\BleDriver.csproj", "{F7BBFFEF-ABA1-4650-9975-BF24A9FDB34B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgApiDriver", "BgApiDriver\BgApiDriver.csproj", "{F7BBFFEF-ABA1-4650-9975-BF24A9FDB34B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BleDriver.Tests", "BleDriver.Tests\BleDriver.Tests.csproj", "{D3C96B93-97A3-48CA-9691-B8523E0CDFC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgApiDriver.Tests", "BgApiDriver.Tests\BgApiDriver.Tests.csproj", "{D3C96B93-97A3-48CA-9691-B8523E0CDFC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
