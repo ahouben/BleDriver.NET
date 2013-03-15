@@ -90,7 +90,7 @@ class BgApiCommandEvent(object):
         s = ''
         for r in (self.isEvent and self.params) or self.returns:
             s += '''
-            public %(param)s;''' % { 'param' : r.dump() }
+            %(hideParam)spublic %(param)s;''' % { 'param' : r.dump(), 'hideParam' : (r.name == 'result' and '//') or '' }
         return s
     def dump(self, f):
         in_params = self.dumpInParams()

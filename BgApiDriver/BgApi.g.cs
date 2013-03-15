@@ -315,7 +315,7 @@ namespace BgApiDriver {
 
         public class ble_msg_system_reg_write_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_system_reg_read_rsp_t : BgApiResponse
@@ -357,17 +357,17 @@ namespace BgApiDriver {
 
         public class ble_msg_system_endpoint_tx_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_system_whitelist_append_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_system_whitelist_remove_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_system_whitelist_clear_rsp_t : BgApiResponse
@@ -376,13 +376,13 @@ namespace BgApiDriver {
 
         public class ble_msg_system_endpoint_rx_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
             public byte[] data;
         }
 
         public class ble_msg_system_endpoint_set_watermarks_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_flash_ps_defrag_rsp_t : BgApiResponse
@@ -399,12 +399,12 @@ namespace BgApiDriver {
 
         public class ble_msg_flash_ps_save_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_flash_ps_load_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
             public byte[] value;
         }
 
@@ -414,7 +414,7 @@ namespace BgApiDriver {
 
         public class ble_msg_flash_erase_page_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_flash_write_words_rsp_t : BgApiResponse
@@ -423,21 +423,21 @@ namespace BgApiDriver {
 
         public class ble_msg_attributes_write_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attributes_read_rsp_t : BgApiResponse
         {
             public int handle;
             public int offset;
-            public int result;
+            //public int result;
             public byte[] value;
         }
 
         public class ble_msg_attributes_read_type_rsp_t : BgApiResponse
         {
             public int handle;
-            public int result;
+            //public int result;
             public byte[] value;
         }
 
@@ -452,7 +452,7 @@ namespace BgApiDriver {
         public class ble_msg_connection_disconnect_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_connection_get_rssi_rsp_t : BgApiResponse
@@ -464,13 +464,13 @@ namespace BgApiDriver {
         public class ble_msg_connection_update_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_connection_version_update_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_connection_channel_map_get_rsp_t : BgApiResponse
@@ -482,13 +482,13 @@ namespace BgApiDriver {
         public class ble_msg_connection_channel_map_set_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_connection_features_get_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_connection_get_status_rsp_t : BgApiResponse
@@ -504,78 +504,78 @@ namespace BgApiDriver {
         public class ble_msg_attclient_find_by_type_value_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_read_by_group_type_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_read_by_type_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_find_information_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_read_by_handle_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_attribute_write_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_write_command_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_indicate_confirm_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_read_long_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_prepare_write_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_execute_write_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_attclient_read_multiple_rsp_t : BgApiResponse
         {
             public int connection;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_sm_encrypt_start_rsp_t : BgApiResponse
         {
             public int handle;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_sm_set_bondable_mode_rsp_t : BgApiResponse
@@ -584,7 +584,7 @@ namespace BgApiDriver {
 
         public class ble_msg_sm_delete_bonding_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_sm_set_parameters_rsp_t : BgApiResponse
@@ -593,7 +593,7 @@ namespace BgApiDriver {
 
         public class ble_msg_sm_passkey_entry_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_sm_get_bonds_rsp_t : BgApiResponse
@@ -611,113 +611,113 @@ namespace BgApiDriver {
 
         public class ble_msg_gap_set_mode_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_gap_discover_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_gap_connect_direct_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
             public int connection_handle;
         }
 
         public class ble_msg_gap_end_procedure_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_gap_connect_selective_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
             public int connection_handle;
         }
 
         public class ble_msg_gap_set_filtering_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_gap_set_scan_parameters_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_gap_set_adv_parameters_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_gap_set_adv_data_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_gap_set_directed_connectable_mode_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_io_port_config_irq_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_set_soft_timer_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_adc_read_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_io_port_config_direction_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_io_port_config_function_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_io_port_config_pull_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_io_port_write_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_io_port_read_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
             public int port;
             public int data;
         }
 
         public class ble_msg_hardware_spi_config_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_hardware_spi_transfer_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
             public int channel;
             public byte[] data;
         }
 
         public class ble_msg_hardware_i2c_read_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
             public byte[] data;
         }
 
@@ -732,7 +732,7 @@ namespace BgApiDriver {
 
         public class ble_msg_hardware_timer_comparator_rsp_t : BgApiResponse
         {
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_test_phy_tx_rsp_t : BgApiResponse
@@ -2539,7 +2539,7 @@ namespace BgApiDriver {
         public class ble_msg_attclient_procedure_completed_evt_t : BgApiEvent
         {
             public int connection;
-            public int result;
+            //public int result;
             public int chrhandle;
         }
 
@@ -2591,7 +2591,7 @@ namespace BgApiDriver {
         public class ble_msg_sm_bonding_fail_evt_t : BgApiEvent
         {
             public int handle;
-            public int result;
+            //public int result;
         }
 
         public class ble_msg_sm_passkey_display_evt_t : BgApiEvent

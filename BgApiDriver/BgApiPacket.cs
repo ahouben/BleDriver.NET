@@ -22,7 +22,10 @@ namespace BgApiDriver
     {
         public bool IsEvent { get { return (Data[0] & (byte)ble_msg_types.ble_msg_type_evt) == (byte)ble_msg_types.ble_msg_type_evt; } }
 
-        public virtual int Result { get { return (int)ble_error.ble_err_success; } }
+        /// <summary>
+        /// The result of a response or event.
+        /// </summary>
+        public int result = (int)ble_error.ble_err_success;
     }
     public class BgApiEvent : BgApiEventResponse { }
     public class BgApiResponse : BgApiEventResponse { }
