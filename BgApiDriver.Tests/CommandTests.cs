@@ -67,7 +67,10 @@ namespace BgApiDriver.Tests
         {
             for (int i = 0; i < 10; i++)
             {
+                // say 'hello'
                 dongle.ble_cmd_system_hello();
+
+                // ask for underlying BT address
                 var rsp = dongle.ble_cmd_system_address_get();
                 Assert.AreEqual(6, rsp.address.Length);
             }

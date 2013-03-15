@@ -360,6 +360,7 @@ namespace BgApiDriver
         protected virtual void log(string msg)
         {
             Console.WriteLine(msg);
+            System.Diagnostics.Debug.Print(msg);
         }
     }
 }

@@ -57,8 +57,8 @@ class BgApiCommandEvent(object):
     def parse(self, node):
         self.index = node.getAttribute('index')
         self.name = node.getAttribute('name')
-        self.no_return = node.getAttribute('no_return') or 'false'
-        self.internal = node.getAttribute('internal') or 'false'
+        self.no_return = node.getAttribute('no_return')
+        self.internal = node.getAttribute('internal')
         self.script = node.getAttribute('script')
         
         self.params = self.param(node.getElementsByTagName('params'))
@@ -78,13 +78,11 @@ class BgApiCommandEvent(object):
     def struct(self):
         return 'ble_msg_%s_%s_%s_t' % (self.upper.name, self.name, (self.isEvent and 'evt') or 'rsp')
     def return_struct_declaration(self):
-        if not self.returns and not self.isEvent:
-            return ''
         s = '''
         public class %(struct)s : BgApi%(type)s
         {%(body)s
         }
-''' % { 'struct' : (self.isEvent and self.struct()) or self.return_struct(),
+''' % { 'struct' : self.struct(),
         'body' : self.return_struct_declaration_body(),
         'type' : (self.isEvent and 'Event') or 'Response' }
         return s
@@ -198,7 +196,7 @@ class BgApiCommandEvent(object):
             }''' % { 'name' : p.name }
         s += '''
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, %s);''' % (self.no_return)
+            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, %s);''' % ((self.no_return and 'true') or 'false')
         if self.returns:
             s += '''
             return (%(struct)s)response;''' % { 'struct' : self.return_struct() }
@@ -293,16 +291,8 @@ namespace BgApiDriver {
                 for cmd in (dumpCommands and cls.commands) or cls.events:
                     s = cmd.return_struct_declaration()
                     f.write(s)
-#            f.write('''
-#        #region %(type)s
-#''' % { 'type' : (dumpCommands and 'Commands') or 'Events' })
             for cls in self.classes:
                 cls.dump(f, dumpCommands)
-#            f.write('''
-#        #endregion %(type)s
-#    }
-#}
-#''' % { 'type' : (dumpCommands and 'Commands') or 'Events' })
         self.dumpEventHandler(f)
         f.write('''
     }
@@ -342,21 +332,22 @@ namespace BgApiDriver {
                         switch(received.Id)
                         {''' % { 'class' : cls.name })
                 for evtRsp in (isEvent and cls.events) or (not isEvent and cls.commands) or []:
-                    if not isEvent and not evtRsp.returns:
+                    if evtRsp.no_return:
                         continue
                     f.write('''
                             case (byte)ble_%(type)s_ids.%(id)s:
                                 {
                                     %(struct)s s = new %(struct)s();%(body)s
                                     check(idx, SIZE_HEADER + _length);
-                                    //%(call)s(s);
+                                    %(doCallback)s%(call)s(s);
                                     res = s;
                                 }
                                 break;''' % { 'type' : (isEvent and 'event') or 'command',
                                               'id' : evtRsp.id(),
                                               'struct' : evtRsp.struct(),
                                               'body' : evtRsp.dumpEventResponseBody(),
-                                              'call' : evtRsp.method_name() })
+                                              'call' : evtRsp.method_name(),
+                                              'doCallback' : (not isEvent and '//') or '' })
                 f.write('''
                             default:
                                 throw new BgApiException(string.Format("Unknown %(type)s id 0x{0}", buffer[3].ToString("X2")));
