@@ -52,6 +52,7 @@ namespace BgApiDriver.Tests
         [TestInitialize()]
         public void MyTestInitialize()
         {
+            // FIXME: configure the serial port
             dongle = new MyBgApi("COM3");
             dongle.Open();
         }

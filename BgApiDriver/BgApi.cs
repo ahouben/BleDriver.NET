@@ -184,10 +184,9 @@ namespace BgApiDriver
             {
                 doOpen();
                 // start with a well known device state
-                // FIXME: the following doesn't seem to work yet
-                //ble_cmd_system_reset(0);
-                //Close();
-                //doOpen();
+                ble_cmd_system_reset(0);
+                Close();
+                doOpen();
 
                 Info = ble_cmd_system_get_info();
                 log(string.Format("Build: {0}, protocol version: {1}, hardware: {2}", Info.build, Info.protocol_version,
@@ -202,7 +201,24 @@ namespace BgApiDriver
             m_serialDataReceivedEventHandler = new SerialDataReceivedEventHandler(m_serialPort_DataReceived);
             m_serialPort.DataReceived += m_serialDataReceivedEventHandler;
 
-            m_serialPort.Open();
+            bool deviceFound = false;
+            for (DateTime now = DateTime.Now; DateTime.Now - now < new TimeSpan(0, 0, 5); )
+            {
+                try
+                {
+                    m_serialPort.Open();
+                    deviceFound = true;
+                    break;
+                }
+                catch (IOException)
+                {
+                    Thread.Sleep(100);
+                }
+            }
+            if (!deviceFound)
+            {
+                throw new BgApiException(string.Format("Cannot connect to device on port {0}", m_port));
+            }
             m_stream = m_serialPort.BaseStream;
             m_rxOffset = 0;
         }
