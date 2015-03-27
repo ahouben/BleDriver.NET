@@ -1,3 +1,6 @@
+
+[![master version](http://img.shields.io/myget/bledriver-feed/v/BgApiDriver.svg?style=flat)](https://www.myget.org/feed/Packages/bledriver-feed)
+
 ## BleDriver.NET
 
 Copyright (c) 2012-2015 Alexander Houben (ahouben@greenliff.com)
@@ -21,8 +24,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ### Content
-
-[![master version](http://img.shields.io/myget/bledriver-feed/v/BgApiDriver.svg?style=flat)](https://www.myget.org/feed/Packages/bledriver-feed)
 
 A python script generates a comfortable C# driver interface to the BG API
 protocol used to communicate with a Bluegiga BLE112 or BLED112 dongle.
