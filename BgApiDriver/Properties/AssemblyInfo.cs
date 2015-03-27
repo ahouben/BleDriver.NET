@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012 Alexander Houben (ahouben@greenliff.com)
+ * Copyright (c) 2012-2015 Alexander Houben (ahouben@greenliff.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Greenliff AG")]
 [assembly: AssemblyProduct("C# BLE(D)112 driver")]
-[assembly: AssemblyCopyright("Copyright © Alexander Houben 2012")]
+[assembly: AssemblyCopyright("Copyright © Alexander Houben 2012-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
