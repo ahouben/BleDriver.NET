@@ -22,7 +22,7 @@ SOFTWARE.
 
 ### Content
 
-[![bledriver-feed MyGet Build Status](https://www.myget.org/BuildSource/Badge/bledriver-feed?identifier=8fb972f7-7f20-4fd9-b939-e69d370c2b6f)](https://www.myget.org/)
+[![master version](http://img.shields.io/myget/bledriver-feed/v/BgApiDriver.svg?style=flat)](https://www.myget.org/feed/Packages/bledriver-feed)
 
 A python script generates a comfortable C# driver interface to the BG API
 protocol used to communicate with a Bluegiga BLE112 or BLED112 dongle.
