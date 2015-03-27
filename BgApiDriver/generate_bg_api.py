@@ -414,4 +414,4 @@ def bg_api(in_xml, out_cs):
     bgapi.dump(out_cs)
 
 if __name__ == '__main__':
-    bg_api('./ble-1.1.0-55/bleapi.xml', './BgApi.g.cs')
+    bg_api('./ble-1.3.2-122/bleapi.xml', './BgApi.g.cs')
