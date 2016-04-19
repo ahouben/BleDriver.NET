@@ -873,7 +873,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)boot_in_dfu;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, true);
+            Send(new BgApiCommand() { Data = _data }, true);
         }
 
         public void ble_cmd_system_hello()
@@ -887,7 +887,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)ble_classes.ble_cls_system;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_system_hello_id;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_system_address_get_rsp_t ble_cmd_system_address_get()
@@ -1083,7 +1083,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)ble_classes.ble_cls_system;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_clear_id;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_system_endpoint_rx_rsp_t ble_cmd_system_endpoint_rx(int endpoint, int size)
@@ -1140,7 +1140,7 @@ namespace BgApiDriver {
                 _data[idx++] = key[i];
             }
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_system_aes_encrypt_rsp_t ble_cmd_system_aes_encrypt(byte[] data)
@@ -1196,7 +1196,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)ble_classes.ble_cls_flash;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_defrag_id;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public void ble_cmd_flash_ps_dump()
@@ -1210,7 +1210,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)ble_classes.ble_cls_flash;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_dump_id;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public void ble_cmd_flash_ps_erase_all()
@@ -1224,7 +1224,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)ble_classes.ble_cls_flash;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_flash_ps_erase_all_id;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_flash_ps_save_rsp_t ble_cmd_flash_ps_save(int key, byte[] value)
@@ -1282,7 +1282,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)key;
             _data[idx++] = (byte)(key >> 8);
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_flash_erase_page_rsp_t ble_cmd_flash_erase_page(int page)
@@ -1429,7 +1429,7 @@ namespace BgApiDriver {
                 _data[idx++] = value[i];
             }
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public void ble_cmd_attributes_user_write_response(int connection, int att_error)
@@ -1446,7 +1446,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)connection;
             _data[idx++] = (byte)att_error;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_attributes_send_rsp_t ble_cmd_attributes_send(int connection, int handle, byte[] value)
@@ -1945,7 +1945,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)bondable;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_sm_delete_bonding_rsp_t ble_cmd_sm_delete_bonding(int handle)
@@ -1980,7 +1980,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)min_key_size;
             _data[idx++] = (byte)io_capabilities;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_sm_passkey_entry_rsp_t ble_cmd_sm_passkey_entry(int handle, long passkey)
@@ -2036,7 +2036,7 @@ namespace BgApiDriver {
                 _data[idx++] = oob[i];
             }
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_sm_whitelist_bonds_rsp_t ble_cmd_sm_whitelist_bonds()
@@ -2068,7 +2068,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)peripheral_privacy;
             _data[idx++] = (byte)central_privacy;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_gap_set_mode_rsp_t ble_cmd_gap_set_mode(int discover, int connect)
@@ -2529,7 +2529,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)power;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_hardware_timer_comparator_rsp_t ble_cmd_hardware_timer_comparator(int timer, int channel, int mode, int comparator_value)
@@ -2602,7 +2602,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)enable;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_hardware_analog_comparator_read_rsp_t ble_cmd_hardware_analog_comparator_read()
@@ -2650,7 +2650,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)gain;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_hardware_usb_enable_rsp_t ble_cmd_hardware_usb_enable(int enable)
@@ -2685,7 +2685,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)length;
             _data[idx++] = (byte)type;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public void ble_cmd_test_phy_rx(int channel)
@@ -2701,7 +2701,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)channel;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_test_phy_end_rsp_t ble_cmd_test_phy_end()
@@ -2730,7 +2730,7 @@ namespace BgApiDriver {
             _data[idx++] = (byte)ble_classes.ble_cls_test;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_test_phy_reset_id;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public ble_msg_test_get_channel_map_rsp_t ble_cmd_test_get_channel_map()
@@ -2782,7 +2782,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)mode;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            Send(new BgApiCommand() { Data = _data }, false);
         }
 
         public void ble_cmd_dfu_reset(int dfu)
@@ -2798,7 +2798,7 @@ namespace BgApiDriver {
             // data
             _data[idx++] = (byte)dfu;
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, true);
+            Send(new BgApiCommand() { Data = _data }, true);
         }
 
         public ble_msg_dfu_flash_set_address_rsp_t ble_cmd_dfu_flash_set_address(long address)

@@ -213,7 +213,8 @@ class BgApiCommandEvent(object):
             }''' % { 'name' : p.name }
         s += '''
             // send
-            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, %s);''' % ((self.no_return and 'true') or 'false')
+            %(response)sSend(new BgApiCommand() { Data = _data }, %(no_return)s);''' % { 'response': (self.returns and 'BgApiResponse response = ') or '',
+                                                                                         'no_return': (self.no_return and 'true') or 'false' }
         if self.returns:
             s += '''
             return (%(struct)s)response;''' % { 'struct' : self.return_struct() }
