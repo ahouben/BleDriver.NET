@@ -1,3 +1,4 @@
 language: csharp
-solution: BleDriver.sln
+script:
+  - xbuild BgApiDriver/BgApiDriver.csproj
 

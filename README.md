@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/ahouben/BleDriver.NET.svg?branch=master)](https://travis-ci.org/ahouben/BleDriver.NET)
+
 [![master version](http://img.shields.io/myget/bledriver-feed/v/BgApiDriver.svg?style=flat)](https://www.myget.org/feed/Packages/bledriver-feed)
 
 ## BleDriver.NET
