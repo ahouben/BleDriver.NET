@@ -350,7 +350,7 @@ namespace BgApiDriver {
 
         public class ble_msg_system_read_memory_rsp_t : BgApiResponse
         {
-            public int address;
+            public long address;
             public byte[] data;
         }
 
@@ -972,7 +972,7 @@ namespace BgApiDriver {
             return (ble_msg_system_get_connections_rsp_t)response;
         }
 
-        public ble_msg_system_read_memory_rsp_t ble_cmd_system_read_memory(int address, int length)
+        public ble_msg_system_read_memory_rsp_t ble_cmd_system_read_memory(long address, int length)
         {
             log("ble_cmd_system_read_memory_id");
             byte[] _data = new byte[SIZE_HEADER + 0 + 4 + 1];
@@ -1302,7 +1302,7 @@ namespace BgApiDriver {
             return (ble_msg_flash_erase_page_rsp_t)response;
         }
 
-        public ble_msg_flash_write_data_rsp_t ble_cmd_flash_write_data(int address, byte[] data)
+        public ble_msg_flash_write_data_rsp_t ble_cmd_flash_write_data(long address, byte[] data)
         {
             log("ble_cmd_flash_write_data_id");
             byte[] _data = new byte[SIZE_HEADER + 0 + 4 + 1 + data.Length];
@@ -1327,7 +1327,7 @@ namespace BgApiDriver {
             return (ble_msg_flash_write_data_rsp_t)response;
         }
 
-        public ble_msg_flash_read_data_rsp_t ble_cmd_flash_read_data(int address, int length)
+        public ble_msg_flash_read_data_rsp_t ble_cmd_flash_read_data(long address, int length)
         {
             log("ble_cmd_flash_read_data_id");
             byte[] _data = new byte[SIZE_HEADER + 0 + 4 + 1];
@@ -1983,7 +1983,7 @@ namespace BgApiDriver {
             BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
         }
 
-        public ble_msg_sm_passkey_entry_rsp_t ble_cmd_sm_passkey_entry(int handle, int passkey)
+        public ble_msg_sm_passkey_entry_rsp_t ble_cmd_sm_passkey_entry(int handle, long passkey)
         {
             log("ble_cmd_sm_passkey_entry_id");
             byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 4];
@@ -2297,7 +2297,7 @@ namespace BgApiDriver {
             return (ble_msg_hardware_io_port_config_irq_rsp_t)response;
         }
 
-        public ble_msg_hardware_set_soft_timer_rsp_t ble_cmd_hardware_set_soft_timer(int time, int handle, int single_shot)
+        public ble_msg_hardware_set_soft_timer_rsp_t ble_cmd_hardware_set_soft_timer(long time, int handle, int single_shot)
         {
             log("ble_cmd_hardware_set_soft_timer_id");
             byte[] _data = new byte[SIZE_HEADER + 0 + 4 + 1 + 1];
@@ -2801,7 +2801,7 @@ namespace BgApiDriver {
             BgApiResponse response = Send(new BgApiCommand() { Data = _data }, true);
         }
 
-        public ble_msg_dfu_flash_set_address_rsp_t ble_cmd_dfu_flash_set_address(int address)
+        public ble_msg_dfu_flash_set_address_rsp_t ble_cmd_dfu_flash_set_address(long address)
         {
             log("ble_cmd_dfu_flash_set_address_id");
             byte[] _data = new byte[SIZE_HEADER + 0 + 4];
@@ -3034,7 +3034,7 @@ namespace BgApiDriver {
         public class ble_msg_sm_passkey_display_evt_t : BgApiEvent
         {
             public int handle;
-            public int passkey;
+            public long passkey;
         }
 
         public class ble_msg_sm_passkey_request_evt_t : BgApiEvent
@@ -3068,7 +3068,7 @@ namespace BgApiDriver {
 
         public class ble_msg_hardware_io_port_status_evt_t : BgApiEvent
         {
-            public int timestamp;
+            public long timestamp;
             public int port;
             public int irq;
             public int state;
@@ -3087,13 +3087,13 @@ namespace BgApiDriver {
 
         public class ble_msg_hardware_analog_comparator_status_evt_t : BgApiEvent
         {
-            public int timestamp;
+            public long timestamp;
             public int output;
         }
 
         public class ble_msg_dfu_boot_evt_t : BgApiEvent
         {
-            public int version;
+            public long version;
         }
 
         protected virtual void ble_evt_system_boot(ble_msg_system_boot_evt_t arg)
@@ -3646,7 +3646,7 @@ namespace BgApiDriver {
                                 {
                                     ble_msg_sm_passkey_display_evt_t s = new ble_msg_sm_passkey_display_evt_t();
                                     s.handle = buffer[idx++];
-                                    s.passkey = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;
+                                    s.passkey = buffer[idx+0] + buffer[idx+1] * 0x100 + buffer[idx+2] * 0x10000 + buffer[idx+3] * (long)0x1000000; idx += 4;
                                     check(idx, SIZE_HEADER + _length);
                                     ble_evt_sm_passkey_display(s);
                                     res = s;
@@ -3683,7 +3683,7 @@ namespace BgApiDriver {
                             case (byte)ble_event_ids.ble_evt_gap_scan_response_id:
                                 {
                                     ble_msg_gap_scan_response_evt_t s = new ble_msg_gap_scan_response_evt_t();
-                                    s.rssi = buffer[idx++];
+                                    s.rssi = (sbyte)buffer[idx++];
                                     s.packet_type = buffer[idx++];
                                     s.sender = new bd_addr();
                                     for(int i = 0; i < s.sender.Length; i++)
@@ -3722,7 +3722,7 @@ namespace BgApiDriver {
                             case (byte)ble_event_ids.ble_evt_hardware_io_port_status_id:
                                 {
                                     ble_msg_hardware_io_port_status_evt_t s = new ble_msg_hardware_io_port_status_evt_t();
-                                    s.timestamp = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;
+                                    s.timestamp = buffer[idx+0] + buffer[idx+1] * 0x100 + buffer[idx+2] * 0x10000 + buffer[idx+3] * (long)0x1000000; idx += 4;
                                     s.port = buffer[idx++];
                                     s.irq = buffer[idx++];
                                     s.state = buffer[idx++];
@@ -3744,7 +3744,7 @@ namespace BgApiDriver {
                                 {
                                     ble_msg_hardware_adc_result_evt_t s = new ble_msg_hardware_adc_result_evt_t();
                                     s.input = buffer[idx++];
-                                    s.value = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
+                                    s.value = buffer[idx+0] | (((sbyte)buffer[idx+1]) << 8); idx+=2;
                                     check(idx, SIZE_HEADER + _length);
                                     ble_evt_hardware_adc_result(s);
                                     res = s;
@@ -3753,7 +3753,7 @@ namespace BgApiDriver {
                             case (byte)ble_event_ids.ble_evt_hardware_analog_comparator_status_id:
                                 {
                                     ble_msg_hardware_analog_comparator_status_evt_t s = new ble_msg_hardware_analog_comparator_status_evt_t();
-                                    s.timestamp = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;
+                                    s.timestamp = buffer[idx+0] + buffer[idx+1] * 0x100 + buffer[idx+2] * 0x10000 + buffer[idx+3] * (long)0x1000000; idx += 4;
                                     s.output = buffer[idx++];
                                     check(idx, SIZE_HEADER + _length);
                                     ble_evt_hardware_analog_comparator_status(s);
@@ -3777,7 +3777,7 @@ namespace BgApiDriver {
                             case (byte)ble_event_ids.ble_evt_dfu_boot_id:
                                 {
                                     ble_msg_dfu_boot_evt_t s = new ble_msg_dfu_boot_evt_t();
-                                    s.version = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;
+                                    s.version = buffer[idx+0] + buffer[idx+1] * 0x100 + buffer[idx+2] * 0x10000 + buffer[idx+3] * (long)0x1000000; idx += 4;
                                     check(idx, SIZE_HEADER + _length);
                                     ble_evt_dfu_boot(s);
                                     res = s;
@@ -3863,7 +3863,7 @@ namespace BgApiDriver {
                             case (byte)ble_command_ids.ble_cmd_system_read_memory_id:
                                 {
                                     ble_msg_system_read_memory_rsp_t s = new ble_msg_system_read_memory_rsp_t();
-                                    s.address = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;
+                                    s.address = buffer[idx+0] + buffer[idx+1] * 0x100 + buffer[idx+2] * 0x10000 + buffer[idx+3] * (long)0x1000000; idx += 4;
                                     s.data = new byte[buffer[idx++]];
                                     for(int i = 0; i < s.data.Length; i++)
                                     {
@@ -4167,7 +4167,7 @@ namespace BgApiDriver {
                                 {
                                     ble_msg_connection_get_rssi_rsp_t s = new ble_msg_connection_get_rssi_rsp_t();
                                     s.connection = buffer[idx++];
-                                    s.rssi = buffer[idx++];
+                                    s.rssi = (sbyte)buffer[idx++];
                                     check(idx, SIZE_HEADER + _length);
                                     //ble_cmd_connection_get_rssi(s);
                                     res = s;

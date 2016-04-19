@@ -22,14 +22,27 @@
 import os, sys
 import xml.dom.minidom
 
+class CSharpType(object):
+
+    TYPE_INT = 'int'
+    TYPE_LONG = 'long'
+    TYPE_BYTEARRAY = 'byte[]'
+    TYPE_BD_ADDR = 'bd_addr'
+
+    def __init__(self, type, numBytes, isSigned = True):
+        self.type = type
+        self.numBytes = numBytes
+        self.isSigned = isSigned
+
+# how to map a BgScript type to a C# type
 typeMap = {
-    'uint8' : ['int', 1],
-    'int8' : ['int', 1],
-    'uint16' : ['int', 2],
-    'uint32' : ['int', 4],
-    'int16' : ['int', 2],
-    'uint8array' : ['byte[]', 0],
-    'bd_addr' : ['bd_addr', 0],
+    'uint8' : CSharpType(CSharpType.TYPE_INT, 1, False),
+    'int8' : CSharpType(CSharpType.TYPE_INT, 1),
+    'uint16' : CSharpType(CSharpType.TYPE_INT, 2, False),
+    'uint32' : CSharpType(CSharpType.TYPE_LONG, 4, False),
+    'int16' : CSharpType(CSharpType.TYPE_INT, 2),
+    'uint8array' : CSharpType(CSharpType.TYPE_BYTEARRAY, 0),
+    'bd_addr' : CSharpType(CSharpType.TYPE_BD_ADDR, 0),
 }
 
 class BgApiParam(object):
@@ -38,7 +51,7 @@ class BgApiParam(object):
         self.name = '%s%s' % (prefix, node.getAttribute('name'))
         self.type = node.getAttribute('type')
     def dump(self):
-        return '%s %s' % (typeMap[self.type][0], self.name)
+        return '%s %s' % (typeMap[self.type].type, self.name)
 
 class BgApiEnum(object):
     def __init__(self, upper):
@@ -114,8 +127,8 @@ class BgApiCommandEvent(object):
     def cmdLength(self):
         size = '0'
         for p in self.params:
-            if typeMap[p.type][1] <> 0:
-                size += ' + %s' % typeMap[p.type][1]
+            if typeMap[p.type].numBytes <> 0:
+                size += ' + %s' % typeMap[p.type].numBytes
             else:
                 size += ' + 1 + %s.Length' % p.name
         return size
@@ -123,23 +136,26 @@ class BgApiCommandEvent(object):
     def dumpEventResponseBody(self):
         s = ''
         for p in (self.isEvent and self.params) or self.returns:
-            if typeMap[p.type][1] == 1:
+            t = typeMap[p.type]
+            if t.numBytes == 1:
                 s += '''
-                                    s.%(name)s = buffer[idx++];''' % { 'name' : p.name }
-            elif typeMap[p.type][1] == 2:
+                                    s.%(name)s = %(isSigned)sbuffer[idx++];''' % { 'name' : p.name, 'isSigned' : (t.isSigned and '(sbyte)') or '' }
+            elif t.numBytes == 2:
                 s += '''
-                                    s.%(name)s = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;''' % { 'name' : p.name }
-            elif typeMap[p.type][1] == 4:
+                                    s.%(name)s = buffer[idx+0] | (%(isSignedStart)sbuffer[idx+1]%(isSignedEnd)s << 8); idx+=2;''' % { 'name' : p.name,
+                                                                                                                                      'isSignedStart' : (t.isSigned and '((sbyte)') or '',
+                                                                                                                                      'isSignedEnd' : (t.isSigned and ')') or '' }
+            elif t.numBytes == 4:
                 s += '''
-                                    s.%(name)s = buffer[idx+0] | (buffer[idx+1] << 8) | (buffer[idx+2] << 16) | (buffer[idx+3] << 24); idx+=4;''' % { 'name' : p.name }
-            elif typeMap[p.type][0] == 'byte[]':
+                                    s.%(name)s = buffer[idx+0] + buffer[idx+1] * 0x100 + buffer[idx+2] * 0x10000 + buffer[idx+3] * (long)0x1000000; idx += 4;''' % { 'name' : p.name }
+            elif t.type == CSharpType.TYPE_BYTEARRAY:
                 s += '''
                                     s.%(name)s = new byte[buffer[idx++]];
                                     for(int i = 0; i < s.%(name)s.Length; i++)
                                     {
                                         s.%(name)s[i] = buffer[idx++];
                                     }''' % { 'name' : p.name }
-            elif typeMap[p.type][0] == 'bd_addr':
+            elif t.type == CSharpType.TYPE_BD_ADDR:
                 s += '''
                                     s.%(name)s = new bd_addr();
                                     for(int i = 0; i < s.%(name)s.Length; i++)
@@ -168,27 +184,28 @@ class BgApiCommandEvent(object):
             s += '''
             // data'''
             for p in self.params:
-                if typeMap[p.type][1] == 1:
+                t = typeMap[p.type]
+                if t.numBytes == 1:
                     s += '''
             _data[idx++] = (byte)%(name)s;''' % { 'name' : p.name }
-                elif typeMap[p.type][1] == 2:
+                elif t.numBytes == 2:
                     s += '''
             _data[idx++] = (byte)%(name)s;
             _data[idx++] = (byte)(%(name)s >> 8);''' % { 'name' : p.name }
-                elif typeMap[p.type][1] == 4:
+                elif t.numBytes == 4:
                     s += '''
             _data[idx++] = (byte)%(name)s;
             _data[idx++] = (byte)(%(name)s >> 8);
             _data[idx++] = (byte)(%(name)s >> 16);
             _data[idx++] = (byte)(%(name)s >> 24);''' % { 'name' : p.name }
-                elif typeMap[p.type][0] == 'byte[]':
+                elif t.type == CSharpType.TYPE_BYTEARRAY:
                     s += '''
             _data[idx++] = (byte)(%(name)s.Length);
             for(int i = 0; i < %(name)s.Length; i++)
             {
                 _data[idx++] = %(name)s[i];
             }''' % { 'name' : p.name }
-                elif typeMap[p.type][0] == 'bd_addr':
+                elif t.type == CSharpType.TYPE_BD_ADDR:
                     s += '''
             for(int i = 0; i < %(name)s.Length; i++)
             {
