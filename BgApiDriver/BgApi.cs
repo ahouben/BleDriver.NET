@@ -245,7 +245,9 @@ namespace BgApiDriver
         private void receive(SerialDataReceivedEventArgs e)
         {
             log(string.Format("Received: {0}", m_serialPort.BytesToRead));
-            int read = m_stream.Read(m_rx, m_rxOffset, m_serialPort.BytesToRead);
+            int availableBufferSpace = m_rx.Length - m_rxOffset;
+            int bytesToRead = Math.Min(availableBufferSpace, m_serialPort.BytesToRead);
+            int read = m_stream.Read(m_rx, m_rxOffset, bytesToRead);
             m_rxOffset += read;
 
             while (true)
