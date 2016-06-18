@@ -83,6 +83,7 @@ namespace BgApiDriver {
             ble_cmd_connection_features_get_id = 6,
             ble_cmd_connection_get_status_id = 7,
             ble_cmd_connection_raw_tx_id = 8,
+            ble_cmd_connection_slave_latency_disable_id = 9,
             ble_cmd_attclient_find_by_type_value_id = 0,
             ble_cmd_attclient_read_by_group_type_id = 1,
             ble_cmd_attclient_read_by_type_id = 2,
@@ -114,6 +115,7 @@ namespace BgApiDriver {
             ble_cmd_gap_set_adv_parameters_id = 8,
             ble_cmd_gap_set_adv_data_id = 9,
             ble_cmd_gap_set_directed_connectable_mode_id = 10,
+            ble_cmd_gap_set_initiating_con_parameters_id = 11,
             ble_cmd_hardware_io_port_config_irq_id = 0,
             ble_cmd_hardware_set_soft_timer_id = 1,
             ble_cmd_hardware_adc_read_id = 2,
@@ -536,6 +538,11 @@ namespace BgApiDriver {
             public int connection;
         }
 
+        public class ble_msg_connection_slave_latency_disable_rsp_t : BgApiResponse
+        {
+            //public int result;
+        }
+
         public class ble_msg_attclient_find_by_type_value_rsp_t : BgApiResponse
         {
             public int connection;
@@ -702,6 +709,11 @@ namespace BgApiDriver {
             //public int result;
         }
 
+        public class ble_msg_gap_set_initiating_con_parameters_rsp_t : BgApiResponse
+        {
+            //public int result;
+        }
+
         public class ble_msg_hardware_io_port_config_irq_rsp_t : BgApiResponse
         {
             //public int result;
@@ -834,6 +846,7 @@ namespace BgApiDriver {
 
         public class ble_msg_test_debug_rsp_t : BgApiResponse
         {
+            public int opcode;
             public byte[] output;
         }
 
@@ -1644,6 +1657,23 @@ namespace BgApiDriver {
             return (ble_msg_connection_raw_tx_rsp_t)response;
         }
 
+        public ble_msg_connection_slave_latency_disable_rsp_t ble_cmd_connection_slave_latency_disable(int disable)
+        {
+            log("ble_cmd_connection_slave_latency_disable_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1];
+            int idx = 0;
+            // header
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 1);
+            _data[idx++] = (byte)ble_classes.ble_cls_connection;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_connection_slave_latency_disable_id;
+            // data
+            _data[idx++] = (byte)disable;
+            // send
+            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            return (ble_msg_connection_slave_latency_disable_rsp_t)response;
+        }
+
         public ble_msg_attclient_find_by_type_value_rsp_t ble_cmd_attclient_find_by_type_value(int connection, int start, int end, int uuid, byte[] value)
         {
             log("ble_cmd_attclient_find_by_type_value_id");
@@ -2278,6 +2308,26 @@ namespace BgApiDriver {
             return (ble_msg_gap_set_directed_connectable_mode_rsp_t)response;
         }
 
+        public ble_msg_gap_set_initiating_con_parameters_rsp_t ble_cmd_gap_set_initiating_con_parameters(int scan_interval, int scan_window)
+        {
+            log("ble_cmd_gap_set_initiating_con_parameters_id");
+            byte[] _data = new byte[SIZE_HEADER + 0 + 2 + 2];
+            int idx = 0;
+            // header
+            _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
+            _data[idx++] = (byte)(0 + 2 + 2);
+            _data[idx++] = (byte)ble_classes.ble_cls_gap;
+            _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_initiating_con_parameters_id;
+            // data
+            _data[idx++] = (byte)scan_interval;
+            _data[idx++] = (byte)(scan_interval >> 8);
+            _data[idx++] = (byte)scan_window;
+            _data[idx++] = (byte)(scan_window >> 8);
+            // send
+            BgApiResponse response = Send(new BgApiCommand() { Data = _data }, false);
+            return (ble_msg_gap_set_initiating_con_parameters_rsp_t)response;
+        }
+
         public ble_msg_hardware_io_port_config_irq_rsp_t ble_cmd_hardware_io_port_config_irq(int port, int enable_bits, int falling_edge)
         {
             log("ble_cmd_hardware_io_port_config_irq_id");
@@ -2748,17 +2798,18 @@ namespace BgApiDriver {
             return (ble_msg_test_get_channel_map_rsp_t)response;
         }
 
-        public ble_msg_test_debug_rsp_t ble_cmd_test_debug(byte[] input)
+        public ble_msg_test_debug_rsp_t ble_cmd_test_debug(int opcode, byte[] input)
         {
             log("ble_cmd_test_debug_id");
-            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + input.Length];
+            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + 1 + input.Length];
             int idx = 0;
             // header
             _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            _data[idx++] = (byte)(0 + 1 + input.Length);
+            _data[idx++] = (byte)(0 + 1 + 1 + input.Length);
             _data[idx++] = (byte)ble_classes.ble_cls_test;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_test_debug_id;
             // data
+            _data[idx++] = (byte)opcode;
             _data[idx++] = (byte)(input.Length);
             for(int i = 0; i < input.Length; i++)
             {
@@ -4245,6 +4296,15 @@ namespace BgApiDriver {
                                     res = s;
                                 }
                                 break;
+                            case (byte)ble_command_ids.ble_cmd_connection_slave_latency_disable_id:
+                                {
+                                    ble_msg_connection_slave_latency_disable_rsp_t s = new ble_msg_connection_slave_latency_disable_rsp_t();
+                                    s.result = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
+                                    check(idx, SIZE_HEADER + _length);
+                                    //ble_cmd_connection_slave_latency_disable(s);
+                                    res = s;
+                                }
+                                break;
                             default:
                                 throw new BgApiException(string.Format("Unknown response id 0x{0}", buffer[3].ToString("X2")));
                         }
@@ -4556,6 +4616,15 @@ namespace BgApiDriver {
                                     res = s;
                                 }
                                 break;
+                            case (byte)ble_command_ids.ble_cmd_gap_set_initiating_con_parameters_id:
+                                {
+                                    ble_msg_gap_set_initiating_con_parameters_rsp_t s = new ble_msg_gap_set_initiating_con_parameters_rsp_t();
+                                    s.result = buffer[idx+0] | (buffer[idx+1] << 8); idx+=2;
+                                    check(idx, SIZE_HEADER + _length);
+                                    //ble_cmd_gap_set_initiating_con_parameters(s);
+                                    res = s;
+                                }
+                                break;
                             default:
                                 throw new BgApiException(string.Format("Unknown response id 0x{0}", buffer[3].ToString("X2")));
                         }
@@ -4819,6 +4888,7 @@ namespace BgApiDriver {
                             case (byte)ble_command_ids.ble_cmd_test_debug_id:
                                 {
                                     ble_msg_test_debug_rsp_t s = new ble_msg_test_debug_rsp_t();
+                                    s.opcode = buffer[idx++];
                                     s.output = new byte[buffer[idx++]];
                                     for(int i = 0; i < s.output.Length; i++)
                                     {
