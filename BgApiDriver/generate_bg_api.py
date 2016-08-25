@@ -127,7 +127,7 @@ class BgApiCommandEvent(object):
     def cmdLength(self):
         size = '0'
         for p in self.params:
-            if typeMap[p.type].numBytes <> 0:
+            if typeMap[p.type].numBytes != 0:
                 size += ' + %s' % typeMap[p.type].numBytes
             else:
                 size += ' + 1 + %s.Length' % p.name
@@ -271,7 +271,7 @@ class BgApi(object):
             cls.parse(classNode)
             self.classes.append(cls)
     def dump(self, out_cs):
-        f = open(out_cs, 'wb')
+        f = open(out_cs, 'w')
         f.write('''/*
  * Copyright (c) 2012-2015 Alexander Houben (ahouben@greenliff.com)
  *
@@ -432,4 +432,4 @@ def bg_api(in_xml, out_cs):
     bgapi.dump(out_cs)
 
 if __name__ == '__main__':
-    bg_api('./ble-1.3.2-122/bleapi.xml', './BgApi.g.cs')
+    bg_api('./ble-1.4.2-130/bleapi.xml', './BgApi.g.cs')
