@@ -20,12 +20,11 @@
  * SOFTWARE.
  */
 using System;
-using System.IO.Ports;
-using System.IO;
-using System.Threading;
 using System.Collections.Generic;
-
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
+using System.Threading;
 
 namespace BgApiDriver
 {
@@ -178,15 +177,18 @@ namespace BgApiDriver
         /// <summary>
         /// Opens the connection to a bgapi device.
         /// </summary>
-        public virtual void Open()
+        public virtual void Open(bool resetUsbDevice = true)
         {
             if (!IsOpen)
             {
                 doOpen();
                 // start with a well known device state
-                ble_cmd_system_reset(0);
-                Close();
-                doOpen();
+                if (resetUsbDevice)
+                {
+                    ble_cmd_system_reset(0);
+                    Close();
+                    doOpen();
+                }
 
                 Info = ble_cmd_system_get_info();
                 log(string.Format("Build: {0}, protocol version: {1}, hardware: {2}", Info.build, Info.protocol_version,
