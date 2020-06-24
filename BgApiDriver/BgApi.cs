@@ -91,6 +91,11 @@ namespace BgApiDriver
         public const int EVENT_TIMEOUT_DEFAULT = 1000;
 
         /// <summary>
+        /// Timeout for the open function in seconds.
+        /// </summary>
+        public static int OpenTimeoutInSeconds = 5;
+
+        /// <summary>
         /// Receive buffer.
         /// </summary>
         byte[] m_rx;
@@ -204,7 +209,7 @@ namespace BgApiDriver
             m_serialPort.DataReceived += m_serialDataReceivedEventHandler;
 
             bool deviceFound = false;
-            for (DateTime now = DateTime.Now; DateTime.Now - now < new TimeSpan(0, 0, 5); )
+            for (DateTime now = DateTime.Now; DateTime.Now - now < new TimeSpan(0, 0, OpenTimeoutInSeconds); )
             {
                 try
                 {
