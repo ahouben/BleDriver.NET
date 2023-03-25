@@ -7,7 +7,7 @@
 
 ## BleDriver.NET
 
-Copyright (c) 2012-2015 Alexander Houben (ahouben@greenliff.com)
+Copyright (c) Alexander Houben (alexander@houben.ch)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -29,6 +29,6 @@ SOFTWARE.
 
 ### Content
 
-A python script generates a comfortable C# driver interface to the BG API
+A python script generates a convenient C# driver interface to the BG API
 protocol used to communicate with a Bluegiga BLE112 or BLED112 dongle.
 
