@@ -1,4 +1,0 @@
-language: csharp
-script:
-  - xbuild BgApiDriver/BgApiDriver.csproj
-
