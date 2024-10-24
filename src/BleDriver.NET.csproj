@@ -15,7 +15,7 @@
   <!-- Packaging options -->
   <PropertyGroup>
     <PackageId>BgApiDriver</PackageId>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.0.1</PackageVersion>
     <RepositoryUrl>https://github.com/ahouben/BleDriver.NET.git</RepositoryUrl> 
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
