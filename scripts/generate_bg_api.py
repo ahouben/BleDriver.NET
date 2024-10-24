@@ -23,7 +23,7 @@ typeMap = {
     'uint32' : CSharpType(CSharpType.TYPE_LONG, 4, False),
     'int16' : CSharpType(CSharpType.TYPE_INT, 2),
     'uint8array' : CSharpType(CSharpType.TYPE_BYTEARRAY, 0),
-    'bd_addr' : CSharpType(CSharpType.TYPE_BD_ADDR, 0),
+    'bd_addr' : CSharpType(CSharpType.TYPE_BD_ADDR, 6),
 }
 
 class BgApiParam(object):

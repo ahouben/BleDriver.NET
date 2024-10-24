@@ -1081,11 +1081,11 @@ namespace BgApiDriver {
         public async Task<ble_msg_system_whitelist_append_rsp_t> ble_cmd_system_whitelist_append(bd_addr address, int address_type)
         {
             log("ble_cmd_system_whitelist_append_id");
-            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1];
+            byte[] _data = new byte[SIZE_HEADER + 0 + 6 + 1];
             int idx = 0;
             // header
             _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            _data[idx++] = (byte)(0 + 1 + address.Length + 1);
+            _data[idx++] = (byte)(0 + 6 + 1);
             _data[idx++] = (byte)ble_classes.ble_cls_system;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_append_id;
             // data
@@ -1102,11 +1102,11 @@ namespace BgApiDriver {
         public async Task<ble_msg_system_whitelist_remove_rsp_t> ble_cmd_system_whitelist_remove(bd_addr address, int address_type)
         {
             log("ble_cmd_system_whitelist_remove_id");
-            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1];
+            byte[] _data = new byte[SIZE_HEADER + 0 + 6 + 1];
             int idx = 0;
             // header
             _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            _data[idx++] = (byte)(0 + 1 + address.Length + 1);
+            _data[idx++] = (byte)(0 + 6 + 1);
             _data[idx++] = (byte)ble_classes.ble_cls_system;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_system_whitelist_remove_id;
             // data
@@ -2240,11 +2240,11 @@ namespace BgApiDriver {
         public async Task<ble_msg_gap_connect_direct_rsp_t> ble_cmd_gap_connect_direct(bd_addr address, int addr_type, int conn_interval_min, int conn_interval_max, int timeout, int latency)
         {
             log("ble_cmd_gap_connect_direct_id");
-            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1 + 2 + 2 + 2 + 2];
+            byte[] _data = new byte[SIZE_HEADER + 0 + 6 + 1 + 2 + 2 + 2 + 2];
             int idx = 0;
             // header
             _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            _data[idx++] = (byte)(0 + 1 + address.Length + 1 + 2 + 2 + 2 + 2);
+            _data[idx++] = (byte)(0 + 6 + 1 + 2 + 2 + 2 + 2);
             _data[idx++] = (byte)ble_classes.ble_cls_gap;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_connect_direct_id;
             // data
@@ -2391,11 +2391,11 @@ namespace BgApiDriver {
         public async Task<ble_msg_gap_set_directed_connectable_mode_rsp_t> ble_cmd_gap_set_directed_connectable_mode(bd_addr address, int addr_type)
         {
             log("ble_cmd_gap_set_directed_connectable_mode_id");
-            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length + 1];
+            byte[] _data = new byte[SIZE_HEADER + 0 + 6 + 1];
             int idx = 0;
             // header
             _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            _data[idx++] = (byte)(0 + 1 + address.Length + 1);
+            _data[idx++] = (byte)(0 + 6 + 1);
             _data[idx++] = (byte)ble_classes.ble_cls_gap;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_directed_connectable_mode_id;
             // data
@@ -2432,11 +2432,11 @@ namespace BgApiDriver {
         public async Task<ble_msg_gap_set_nonresolvable_address_rsp_t> ble_cmd_gap_set_nonresolvable_address(bd_addr address)
         {
             log("ble_cmd_gap_set_nonresolvable_address_id");
-            byte[] _data = new byte[SIZE_HEADER + 0 + 1 + address.Length];
+            byte[] _data = new byte[SIZE_HEADER + 0 + 6];
             int idx = 0;
             // header
             _data[idx++] = (byte)ble_dev_types.ble_dev_type_ble|(byte)ble_msg_types.ble_msg_type_cmd|0x0;
-            _data[idx++] = (byte)(0 + 1 + address.Length);
+            _data[idx++] = (byte)(0 + 6);
             _data[idx++] = (byte)ble_classes.ble_cls_gap;
             _data[idx++] = (byte)ble_command_ids.ble_cmd_gap_set_nonresolvable_address_id;
             // data

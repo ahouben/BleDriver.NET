@@ -48,14 +48,9 @@ namespace BgApiDriver
         private SerialDataReceivedEventHandler m_serialDataReceivedEventHandler;
 
         /// <summary>
-        /// Assumes that the maximum message size in bytes that ever goes over the wire in both directions is less than this value.
-        /// </summary>
-        public const int MAX_MESSAGE = 256;
-
-        /// <summary>
         /// The maximum receive message size in bytes.
         /// </summary>
-        public const int MAX_RECEIVE_MESSAGE = MAX_MESSAGE;
+        public const int MAX_RECEIVE_MESSAGE = 65536;
 
         /// <summary>
         /// The size of the header in bytes.
