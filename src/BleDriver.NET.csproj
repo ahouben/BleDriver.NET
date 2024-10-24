@@ -1,14 +1,55 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <!-- Debugging options -->
+  <PropertyGroup>
+    <DebugType>Embedded</DebugType>
+    <EmbedAllSources>true</EmbedAllSources>
+  </PropertyGroup>
+
+  <!-- Packaging options -->
+  <PropertyGroup>
+    <PackageId>BgApiDriver</PackageId>
+    <PackageVersion>2.0.0</PackageVersion>
+    <RepositoryUrl>https://github.com/ahouben/BleDriver.NET.git</RepositoryUrl> 
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Alexander Houben, Nathan Conrad</Authors>
+    <Description>C# bindings for Bluegiga BLED112 or BLE112 Bluetooth Low Energy USB Dongle</Description>
+    <Copyright>Copyright (c) Alexander Houben 2024</Copyright>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="8.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1"/>
+    <None Include="../README.md" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+  <Choose>
+    <When Condition="$(TargetFramework.StartsWith(net9))">
+      <PropertyGroup>
+        <SystemIOPorts>9.0.0-rc.2.24473.5</SystemIOPorts>
+      </PropertyGroup>
+    </When>
+    <When Condition="$(TargetFramework.StartsWith(net8))">
+      <PropertyGroup>
+        <SystemIOPorts>8.0.0</SystemIOPorts>
+      </PropertyGroup>
+    </When>
+    <When Condition="$(TargetFramework.StartsWith(net6))">
+      <PropertyGroup>
+        <SystemIOPorts>6.0.0</SystemIOPorts>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="$(SystemIOPorts)"/>
   </ItemGroup>
 
 </Project>

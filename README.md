@@ -1,10 +1,3 @@
-
-[![Build Status](https://travis-ci.org/ahouben/BleDriver.NET.svg?branch=master)](https://travis-ci.org/ahouben/BleDriver.NET)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/299v7rc0micdmxnc?svg=true)](https://ci.appveyor.com/project/ahouben/bledriver-net)
-
-[![master version](http://img.shields.io/myget/bledriver-feed/v/BgApiDriver.svg?style=flat)](https://www.myget.org/feed/Packages/bledriver-feed)
-
 ## BleDriver.NET
 
 C# bindings for Bluegiga BLED112 or BLE112 Bluetooth Low Energy USB Dongle.
@@ -36,13 +29,19 @@ from the command line:
 
 from Visual Studio Code:
 * Open the Test Explorer window using Ctrl+Shift+P and select "Testing: Focus on Test Explorer View"
-* Then "Run All"
+* Then "Run Tests", "Debug Tests" or "Run Tests with Coverage"
+* "Show Output" shows the console logs during test case execution
 
 Result:
 ```
 Passed!  - Failed:     0, Passed:     4, Skipped:     0, Total:     4, Duration: 25 s - BgApiDriver.Tests.dll (net8.0)
 ```
 
-### Other bindings
+### Other bindings and GitHub projects
 
-For python bindings see https://github.com/petermoz/blepy.
+* https://github.com/petermoz/blepy: python
+* https://github.com/jrowberg/bglib: C#, python, C++
+* https://github.com/xloem/bglibpp: C++
+* https://github.com/mjbrown/bgapi: python
+
+More at https://github.com/search?q=bluegiga+OR+BLED112&type=repositories

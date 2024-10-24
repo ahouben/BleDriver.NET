@@ -5,7 +5,6 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading;
-using Microsoft.Extensions.Logging;
 
 namespace BgApiDriver
 {
